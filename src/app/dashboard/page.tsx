@@ -107,6 +107,7 @@ export default function DashboardPage() {
     // Font customization state
     const [fontColor, setFontColor] = useState('#ffffff');
     const [fontFamily, setFontFamily] = useState('Inter');
+    const [buttonShape, setButtonShape] = useState('rounded');
 
     // New State for Collapsible Links
     const [expandedLinkIds, setExpandedLinkIds] = useState<Set<string>>(new Set());
@@ -243,6 +244,7 @@ export default function DashboardPage() {
                 setCustomBackground(data.user.customBackground || '');
                 setFontColor(data.user.fontColor || '#ffffff');
                 setFontFamily(data.user.fontFamily || 'Inter');
+                setButtonShape(data.user.buttonShape || 'rounded');
             }
         } catch (error) {
             console.error('Failed to fetch profile:', error);
@@ -284,7 +286,7 @@ export default function DashboardPage() {
             const res = await fetch('/api/profile', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, username, bio, image: image, themeId: selectedTheme, customBackground, fontColor, fontFamily }),
+                body: JSON.stringify({ name, username, bio, image: image, themeId: selectedTheme, customBackground, fontColor, fontFamily, buttonShape }),
             });
 
             if (res.ok) {
@@ -1237,6 +1239,66 @@ export default function DashboardPage() {
                                             </div>
                                         </div>
                                     </div>
+
+                                    {/* Button Shapes */}
+                                    <div className={styles.appearanceSection} style={{ marginTop: '2rem' }}>
+                                        <div>
+                                            <h2>🔘 Button Shapes</h2>
+                                            <p className={styles.helperText}>Choose how your link buttons look</p>
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+                                            {[
+                                                { id: 'rounded', name: 'Rounded', radius: '16px' },
+                                                { id: 'pill', name: 'Pill', radius: '50px' },
+                                                { id: 'sharp', name: 'Sharp', radius: '0px' },
+                                                { id: 'soft', name: 'Soft', radius: '8px' },
+                                            ].map((shape) => (
+                                                <button
+                                                    key={shape.id}
+                                                    onClick={() => setButtonShape(shape.id)}
+                                                    style={{
+                                                        padding: '0.875rem 1.5rem',
+                                                        borderRadius: shape.radius,
+                                                        background: buttonShape === shape.id
+                                                            ? 'linear-gradient(135deg, #d4af37 0%, #b8960f 100%)'
+                                                            : 'rgba(26, 22, 20, 0.6)',
+                                                        border: buttonShape === shape.id
+                                                            ? '2px solid #d4af37'
+                                                            : '2px solid rgba(212, 175, 55, 0.3)',
+                                                        color: buttonShape === shape.id ? '#0d0d0d' : '#f5f5dc',
+                                                        fontWeight: 600,
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.3s',
+                                                        fontSize: '0.9rem',
+                                                        fontFamily: 'var(--font-cinzel), serif',
+                                                        letterSpacing: '0.05em',
+                                                        textTransform: 'uppercase'
+                                                    }}
+                                                >
+                                                    {shape.name}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        {/* Preview */}
+                                        <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: 'rgba(26, 22, 20, 0.4)', borderRadius: '12px', border: '2px solid rgba(212, 175, 55, 0.2)' }}>
+                                            <h4 style={{ marginBottom: '1rem', fontSize: '0.9rem', color: '#d4af37', fontFamily: 'var(--font-cinzel), serif' }}>Preview</h4>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                                <div style={{
+                                                    padding: '1rem 1.5rem',
+                                                    borderRadius: buttonShape === 'rounded' ? '16px' : buttonShape === 'pill' ? '50px' : buttonShape === 'sharp' ? '0px' : '8px',
+                                                    background: 'rgba(26, 22, 20, 0.6)',
+                                                    border: '2px solid rgba(212, 175, 55, 0.4)',
+                                                    color: '#f5f5dc',
+                                                    textAlign: 'center',
+                                                    fontWeight: 600
+                                                }}>
+                                                    Sample Link Button
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -1429,12 +1491,20 @@ export default function DashboardPage() {
 
 
                                                 <div className={styles.previewLinks}>
-                                                    {links.filter(l => l.title && l.url && l.type !== 'social').map((link) => (
-                                                        <div key={link.id} className={styles.previewLink}>
-                                                            {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
-                                                            {link.title}
-                                                        </div>
-                                                    ))}
+                                                    {links.filter(l => l.title && l.url && l.type !== 'social').map((link) => {
+                                                        // Map buttonShape to CSS class
+                                                        const shapeClass = buttonShape === 'pill' ? styles.btnPill
+                                                            : buttonShape === 'sharp' ? styles.btnSharp
+                                                                : buttonShape === 'soft' ? styles.btnSoft
+                                                                    : styles.btnRounded;
+
+                                                        return (
+                                                            <div key={link.id} className={`${styles.previewLink} ${shapeClass}`}>
+                                                                {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
+                                                                {link.title}
+                                                            </div>
+                                                        )
+                                                    })}
                                                     {links.length === 0 && (
                                                         <p
                                                             className={styles.emptyState}

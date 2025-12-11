@@ -197,6 +197,9 @@ export default function UsernamePage({ params }: { params: Promise<{ username: s
         ? `url(${profile.customBackground}) center/cover`
         : (themes[profile?.themeId as keyof typeof themes] || themes.pharaoh);
 
+    // Get button shape
+    const buttonShape = profile?.buttonShape || 'rounded';
+
     return (
         <div
             className={styles.container}
@@ -305,50 +308,61 @@ export default function UsernamePage({ params }: { params: Promise<{ username: s
 
                         {/* Regular Links (Non-Social) */}
                         <div className={styles.links}>
-                            {links.filter(l => l.type !== 'social').map((link) => (
-                                <div key={link.id} className={styles.link}>
-                                    <div className={styles.linkContentWrapper}>
-                                        <div className={styles.linkMainRow}>
-                                            <a
-                                                href={link.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}
-                                            >
-                                                {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
-                                                {link.title}
-                                            </a>
+                            {links.filter(l => l.type !== 'social').map((link) => {
+                                const youtubeId = getYouTubeId(link.url);
+                                const isExpanded = expandedVideoId === link.id;
 
-                                            {/* Preview Toggle for YouTube Links */}
-                                            {(link.type === 'video' || (link.url && getYouTubeId(link.url))) && (
-                                                <button
-                                                    className={styles.previewToggleBtn}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        e.stopPropagation();
-                                                        setExpandedVideoId(expandedVideoId === link.id ? null : link.id);
-                                                    }}
-                                                    title={expandedVideoId === link.id ? "Close Preview" : "Preview Video"}
+                                // Map buttonShape to CSS class
+                                const shapeClass = buttonShape === 'pill' ? styles.btnPill
+                                    : buttonShape === 'sharp' ? styles.btnSharp
+                                        : buttonShape === 'soft' ? styles.btnSoft
+                                            : styles.btnRounded;
+
+                                return (
+                                    <div key={link.id} className={`${styles.link} ${shapeClass}`}>
+                                        <div className={styles.linkContentWrapper}>
+                                            <div className={styles.linkMainRow}>
+                                                <a
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}
                                                 >
-                                                    {expandedVideoId === link.id ? "✕" : "▼"}
-                                                </button>
+                                                    {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
+                                                    {link.title}
+                                                </a>
+
+                                                {/* Preview Toggle for YouTube Links */}
+                                                {(link.type === 'video' || (link.url && getYouTubeId(link.url))) && (
+                                                    <button
+                                                        className={styles.previewToggleBtn}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            setExpandedVideoId(expandedVideoId === link.id ? null : link.id);
+                                                        }}
+                                                        title={expandedVideoId === link.id ? "Close Preview" : "Preview Video"}
+                                                    >
+                                                        {expandedVideoId === link.id ? "✕" : "▼"}
+                                                    </button>
+                                                )}
+                                            </div>
+
+                                            {/* Video Preview Iframe */}
+                                            {expandedVideoId === link.id && getYouTubeId(link.url) && (
+                                                <div className={styles.videoPreviewContainer}>
+                                                    <iframe
+                                                        src={`https://www.youtube.com/embed/${getYouTubeId(link.url)}?autoplay=1&mute=${link.autoplay ? '1' : '0'}`}
+                                                        title={link.title}
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                    ></iframe>
+                                                </div>
                                             )}
                                         </div>
-
-                                        {/* Video Preview Iframe */}
-                                        {expandedVideoId === link.id && getYouTubeId(link.url) && (
-                                            <div className={styles.videoPreviewContainer}>
-                                                <iframe
-                                                    src={`https://www.youtube.com/embed/${getYouTubeId(link.url)}?autoplay=1&mute=${link.autoplay ? '1' : '0'}`}
-                                                    title={link.title}
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowFullScreen
-                                                ></iframe>
-                                            </div>
-                                        )}
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                             {links.length === 0 && (
                                 <p className={styles.emptyState}>No links added yet</p>
                             )}

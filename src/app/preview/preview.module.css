@@ -269,6 +269,25 @@
     font-size: 1.05rem;
     transition: all 0.2s;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    display: block;
+    text-align: center;
+}
+
+/* Button Shapes */
+.link.btnRounded {
+    border-radius: 16px;
+}
+
+.link.btnPill {
+    border-radius: 50px;
+}
+
+.link.btnSharp {
+    border-radius: 0px;
+}
+
+.link.btnSoft {
+    border-radius: 8px;
 }
 
 .link:hover {

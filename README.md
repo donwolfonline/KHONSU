@@ -23,6 +23,7 @@ Khonsu is a premium Egyptian-themed link-in-bio platform featuring a mystical da
 - **Places Collection** - Showcase special locations with maps
 - **Theme Customization** - 13+ premium themes including exclusive Pharaoh
 - **Video Embeds** - YouTube integration with autoplay support
+- **Button Shapes** - Customize link buttons (Rounded, Pill, Sharp, Soft)
 - **Real-time Preview** - Live mobile preview while editing
 
 ### 🔐 **Authentication & Security**

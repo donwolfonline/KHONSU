@@ -22,6 +22,7 @@ model User {
   customBackground String?
   fontColor        String?   @default("#ffffff")
   fontFamily       String?   @default("Inter")
+  buttonShape      String?   @default("rounded")
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 

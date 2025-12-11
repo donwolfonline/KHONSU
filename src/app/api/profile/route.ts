@@ -45,6 +45,7 @@ export async function GET() {
                 customBackground: true,
                 fontColor: true,
                 fontFamily: true,
+                buttonShape: true,
             },
         });
 
@@ -78,7 +79,7 @@ export async function PUT(req: Request) {
 
         const body = await req.json();
         console.log('Profile update request body:', body);
-        const { name, bio, image, themeId, username, customBackground, fontColor, fontFamily } = body;
+        const { name, bio, image, themeId, username, customBackground, fontColor, fontFamily, buttonShape } = body;
 
         // Check username uniqueness if it's being updated
         if (username) {
@@ -106,6 +107,7 @@ export async function PUT(req: Request) {
                 ...(customBackground !== undefined && { customBackground }),
                 ...(fontColor !== undefined && { fontColor }),
                 ...(fontFamily !== undefined && { fontFamily }),
+                ...(buttonShape !== undefined && { buttonShape }),
             },
             select: {
                 id: true,
@@ -117,6 +119,7 @@ export async function PUT(req: Request) {
                 customBackground: true,
                 fontColor: true,
                 fontFamily: true,
+                buttonShape: true,
             },
         });
 

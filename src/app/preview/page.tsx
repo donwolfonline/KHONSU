@@ -77,6 +77,7 @@ export default function PreviewPage() {
     }
 
     const themeGradient = themes[profile?.themeId as keyof typeof themes] || themes.purple;
+    const buttonShape = profile?.buttonShape || 'rounded';
 
     return (
         <div className={styles.container} style={{ background: themeGradient }}>
@@ -158,18 +159,26 @@ export default function PreviewPage() {
 
                         {/* Links */}
                         <div className={styles.links}>
-                            {links.map((link) => (
-                                <a
-                                    key={link.id}
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.link}
-                                >
-                                    {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
-                                    {link.title}
-                                </a>
-                            ))}
+                            {links.map((link) => {
+                                // Map buttonShape to CSS class
+                                const shapeClass = buttonShape === 'pill' ? styles.btnPill
+                                    : buttonShape === 'sharp' ? styles.btnSharp
+                                        : buttonShape === 'soft' ? styles.btnSoft
+                                            : styles.btnRounded;
+
+                                return (
+                                    <a
+                                        key={link.id}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`${styles.link} ${shapeClass}`}
+                                    >
+                                        {link.type === 'video' && <span className={styles.videoIcon}>▶</span>}
+                                        {link.title}
+                                    </a>
+                                );
+                            })}
                             {links.length === 0 && (
                                 <p className={styles.emptyState}>No links added yet</p>
                             )}

@@ -20,6 +20,7 @@ export async function GET(
                 customBackground: true,
                 fontColor: true,
                 fontFamily: true,
+                buttonShape: true,
             },
         });
 

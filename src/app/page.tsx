@@ -22,12 +22,12 @@ export default function Home() {
               />
             </div>
             <h1 className={styles.title}>
-              One Link for Your <br />
-              <span className="text-gradient">Digital Universe</span>
+              Guide Your Travelers <br />
+              <span className="text-gradient">Through the Night</span>
             </h1>
             <p className={styles.subtitle}>
-              Connect all your worlds under the moon's glow. Share your presence,
-              stories, and creativity in one mystical, personalized page.
+              Like Khonsu, the ancient pathfinder, illuminate your digital universe.
+              Protect your presence and guide your followers with a single, mystical link.
             </p>
             <div className={styles.ctaGroup}>
               <Link href="/register" className="btn btn-primary">

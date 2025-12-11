@@ -1,5 +1,4 @@
-#  <img width="286" height="275" alt="Screenshot 2025-12-12 at 1 13 48 AM" src="https://github.com/user-attachments/assets/5ebb91f8-87fe-4341-9e83-d426b7707993" />
-KHONSU
+# <img width="509" height="490" alt="KHONSU" src="https://github.com/user-attachments/assets/6e266200-023c-4513-99ab-4e2049d40451" /> KHONSU
 
 > **One link to rule your digital universe under the moon's glow**
 

@@ -1,4 +1,4 @@
-# <img width="509" height="490" alt="KHONSU" src="https://github.com/user-attachments/assets/6e266200-023c-4513-99ab-4e2049d40451" /> KHONSU
+# <img width="200" height="200" alt="KHONSU" src="https://github.com/user-attachments/assets/6e266200-023c-4513-99ab-4e2049d40451" /> KHONSU
 
 > **One link to rule your digital universe under the moon's glow**
 

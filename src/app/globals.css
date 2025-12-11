@@ -1,0 +1,185 @@
+:root {
+  /* Egyptian Pharaoh Color Palette - Dark Granite Theme */
+  --background: #0d0d0d;
+  /* Deep black stone */
+  --foreground: #f5f5dc;
+  /* Papyrus white */
+
+  --primary: #d4af37;
+  /* Egyptian gold */
+  --primary-hover: #b8960f;
+  /* Darker gold */
+  --primary-foreground: #0d0d0d;
+  /* Dark text on gold */
+
+  --secondary: #1a1614;
+  /* Dark granite */
+  --secondary-hover: #2a2420;
+  /* Lighter granite */
+  --secondary-foreground: #d4af37;
+  /* Gold text */
+
+  --accent: #8b4513;
+  /* Terracotta */
+  --accent-foreground: #f5f5dc;
+
+  --muted: #4a4a4a;
+  --muted-foreground: #9a9a8a;
+
+  --border: #2a2420;
+  /* Granite border */
+  --input: #1a1614;
+  --ring: #d4af37;
+  /* Gold ring */
+
+  --radius: 0.25rem;
+  /* Sharp Egyptian edges */
+
+  /* Egyptian Gradients */
+  --gradient-primary: linear-gradient(135deg, #d4af37 0%, #b8960f 100%);
+  --gradient-dark: linear-gradient(to bottom, #0d0d0d, #1a1614);
+  --gradient-stone: linear-gradient(135deg, #2a2420 0%, #1a1614 100%);
+  --gradient-royal: linear-gradient(135deg, #d4af37 0%, #8b4513 50%, #d4af37 100%);
+
+  /* Font Families */
+  --font-inter: var(--font-inter);
+  --font-roboto: var(--font-roboto);
+  --font-poppins: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+  --font-playfair: var(--font-playfair);
+  --font-lora: var(--font-lora);
+  --font-cinzel: var(--font-cinzel);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Egyptian-Inspired Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  font-size: 0.95rem;
+  font-family: var(--font-cinzel), serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  border-color: #d4af37;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: #b8960f;
+}
+
+.btn-secondary {
+  background: var(--gradient-stone);
+  color: var(--secondary-foreground);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-gradient {
+  background: var(--gradient-royal);
+  color: var(--primary-foreground);
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-gradient:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(26, 22, 20, 0.8) 0%, rgba(42, 36, 32, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+}
+
+.text-gradient {
+  background: var(--gradient-royal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Egyptian decorative border pattern */
+.egyptian-border {
+  position: relative;
+}
+
+.egyptian-border::before,
+.egyptian-border::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg,
+      #d4af37 0px,
+      #d4af37 10px,
+      transparent 10px,
+      transparent 20px,
+      #8b4513 20px,
+      #8b4513 30px,
+      transparent 30px,
+      transparent 40px);
+}
+
+.egyptian-border::before {
+  top: 0;
+}
+
+.egyptian-border::after {
+  bottom: 0;
+}

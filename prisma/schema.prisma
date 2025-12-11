@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String    @id @default(cuid())
+  name             String?
+  username         String    @unique
+  email            String    @unique
+  passwordHash     String
+  image            String?
+  bio              String?
+  themeId          String?
+  customBackground String?
+  fontColor        String?   @default("#ffffff")
+  fontFamily       String?   @default("Inter")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  links         Link[]
+  stories       Story[]
+  places        Place[]
+  subscribers   Subscriber[]
+}
+
+model Link {
+  id          String   @id @default(cuid())
+  title       String
+  url         String
+  type        String   @default("custom") // custom, social, video
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  autoplay    Boolean  @default(false)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Place {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  imageUrl     String
+  locationLink String
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating       Int      @default(5)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Story {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}

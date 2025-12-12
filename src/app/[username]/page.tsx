@@ -154,9 +154,9 @@ export default function UsernamePage({ params }: { params: Promise<{ username: s
 
             // Fetch user's content
             const [linksRes, storiesRes, placesRes] = await Promise.all([
-                fetch(`/api/user/${username}/links`),
-                fetch(`/api/user/${username}/stories`),
-                fetch(`/api/user/${username}/places`),
+                fetch(`/api/user/${username}/links`, { cache: 'no-store' }),
+                fetch(`/api/user/${username}/stories`, { cache: 'no-store' }),
+                fetch(`/api/user/${username}/places`, { cache: 'no-store' }),
             ]);
 
             setProfile(userData.user);

@@ -347,6 +347,19 @@
     overflow: hidden;
 }
 
+.placeRating {
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+    /* Gold color for stars */
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.ratingDim {
+    opacity: 0.3;
+    color: #ccc;
+}
+
 .viewLocationLink {
     display: inline-flex;
     align-items: center;

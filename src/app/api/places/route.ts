@@ -15,7 +15,8 @@ async function getUserFromToken() {
         );
         const { payload } = await jwtVerify(token, secret);
         return payload.userId as string;
-    } catch {
+    } catch (error) {
+        console.error('JWT Verification failed:', error);
         return null;
     }
 }

@@ -1614,3 +1614,35 @@
 .ratingDim {
     color: rgba(255, 255, 255, 0.2);
 }
+
+/* Mobile Header Optimization */
+@media (max-width: 640px) {
+    .headerContent {
+        flex-wrap: nowrap;
+        /* Force single row */
+        gap: 0.5rem;
+        padding: 0 0.75rem;
+    }
+
+    .logo span {
+        display: none !important;
+        /* Hide KHONSU text */
+    }
+
+    .headerActions {
+        width: auto;
+        justify-content: flex-end;
+        gap: 0.35rem;
+        flex-wrap: nowrap;
+    }
+
+    .headerActions :global(.btn) {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+        border-width: 1px;
+        min-width: auto;
+        height: 36px;
+        /* consistent height */
+        white-space: nowrap;
+    }
+}

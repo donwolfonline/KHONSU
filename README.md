@@ -33,10 +33,11 @@ Khonsu is a premium Egyptian-themed link-in-bio platform featuring a mystical da
 - Password change functionality
 
 ### 📱 **Responsive Design**
-- Mobile-first approach
+- Mobile-first approach with optimized headers
 - Tablet and desktop optimized
 - Touch-friendly interactions
 - Smooth animations across all devices
+- Smart session handling with auto-redirects
 
 ---
 

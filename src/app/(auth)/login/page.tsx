@@ -81,13 +81,12 @@ export default function LoginPage() {
                 <div className={styles.header}>
                     <Link href="/" className={styles.logo}>
                         <Image
-                            src="/thatch-logo.png"
-                            alt="Thatch Logo"
-                            width={50}
-                            height={50}
-                            style={{ marginRight: '0.75rem' }}
+                            src="/thatch-full-logo.png"
+                            alt="Thatch"
+                            width={140}
+                            height={40}
+                            priority
                         />
-                        <span style={{ fontFamily: 'var(--font-poppins), sans-serif', fontSize: '1.6rem', fontWeight: 600, letterSpacing: '-0.01em', color: '#1A1A1A' }}>thatch</span>
                     </Link>
                     <h1 className={styles.title}>Welcome back</h1>
                     <p className={styles.subtitle}>Enter your details to access your account</p>

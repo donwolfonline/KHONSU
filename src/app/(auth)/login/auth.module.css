@@ -1,120 +1,147 @@
+/* ===================
+   AUTH LAYOUT - LIGHT THEME
+   =================== */
+
 .container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: linear-gradient(to bottom, #0d0d0d 0%, #1a1614 100%);
-    background-image:
-        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-        linear-gradient(rgba(212, 175, 55, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
-    background-size: 100% 100%, 50px 50px, 50px 50px;
+    /* Light Radial Gradient matching Landing Page */
+    background: radial-gradient(circle at 50% 40%, rgba(255, 245, 242, 0.8) 0%, rgba(255, 255, 255, 1) 60%);
+    font-family: var(--font-outfit), sans-serif;
 }
 
 .card {
     width: 100%;
-    max-width: 450px;
-    padding: 3rem;
+    max-width: 420px;
+    padding: 2.5rem;
     position: relative;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #d4af37 0%, #8b4513 50%, #d4af37 100%);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
 .header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.02);
 }
 
 .title {
-    font-family: var(--font-cinzel), serif;
-    font-size: 2rem;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 1.75rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: #d4af37;
-    letter-spacing: 0.05em;
+    color: #1A1A1A;
+    letter-spacing: -0.02em;
 }
 
 .subtitle {
-    color: rgba(245, 245, 220, 0.7);
-    font-size: 0.95rem;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.5rem;
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.5rem;
 }
 
 .formGroup label {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #d4af37;
-    font-family: var(--font-cinzel), serif;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    color: #333;
+    margin-left: 0.25rem;
 }
 
 .formGroup input {
-    padding: 0.875rem 1.25rem;
-    border-radius: var(--radius);
-    background: rgba(26, 22, 20, 0.6);
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    color: var(--foreground);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #E5E5E5;
+    color: #1A1A1A;
     font-size: 1rem;
-    transition: all 0.3s;
+    transition: all 0.2s ease;
 }
 
 .formGroup input:focus {
     outline: none;
-    border-color: #d4af37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(212, 175, 55, 0.1);
-    background: rgba(26, 22, 20, 0.8);
+    border-color: #FF6B4A;
+    box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.1);
+}
+
+.formGroup input::placeholder {
+    color: #AAA;
 }
 
 .footer {
     margin-top: 2rem;
     text-align: center;
-    font-size: 0.9rem;
-    color: rgba(245, 245, 220, 0.7);
+    font-size: 0.95rem;
+    color: #666;
 }
 
 .link {
-    color: #d4af37;
+    color: #FF6B4A;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: color 0.2s ease;
+    text-decoration: none;
 }
 
 .link:hover {
-    color: #f5f5dc;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    color: #FF8F75;
+    text-decoration: underline;
 }
 
 /* Utility for full width button */
 .container :global(.btn-full) {
     width: 100%;
     margin-top: 0.5rem;
+    border-radius: 12px;
+    padding: 0.875rem;
+    font-weight: 600;
+    font-size: 1rem;
+    background: #1A1A1A;
+    /* Dark primary button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.container :global(.btn-full):hover {
+    background: #333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container :global(.btn-full):disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
 }

@@ -1770,3 +1770,84 @@
         white-space: nowrap;
     }
 }
+/* Appearance Tab - Button Shapes & Preview */
+.buttonShapeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.buttonShapeBtn {
+    padding: 0.875rem 1.5rem;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    font-family: var(--font-outfit), sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.buttonShapeBtn:hover {
+    border-color: #FF6B4A;
+    color: #FF6B4A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 74, 0.15);
+}
+
+.buttonShapeBtnActive {
+    background: #1A1A1A;
+    border-color: #1A1A1A;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+.buttonShapeBtnActive:hover {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.appearancePreviewBox {
+    margin-top: 1.5rem;
+    padding: 2rem;
+    background: #FAFAFA;
+    border-radius: 16px;
+    border: 1px solid #E5E5E5;
+    text-align: center;
+}
+
+.appearancePreviewTitle {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sampleButtonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.sampleButton {
+    padding: 1rem 2rem;
+    background: #1A1A1A;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    cursor: default;
+}

@@ -1291,7 +1291,7 @@ export default function DashboardPage() {
                                             <p className={styles.helperText}>Choose how your link buttons look</p>
                                         </div>
 
-                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+                                        <div className={styles.buttonShapeGrid}>
                                             {[
                                                 { id: 'rounded', name: 'Rounded', radius: '16px' },
                                                 { id: 'pill', name: 'Pill', radius: '50px' },
@@ -1301,24 +1301,8 @@ export default function DashboardPage() {
                                                 <button
                                                     key={shape.id}
                                                     onClick={() => setButtonShape(shape.id)}
-                                                    style={{
-                                                        padding: '0.875rem 1.5rem',
-                                                        borderRadius: shape.radius,
-                                                        background: buttonShape === shape.id
-                                                            ? 'linear-gradient(135deg, #d4af37 0%, #b8960f 100%)'
-                                                            : 'rgba(26, 22, 20, 0.6)',
-                                                        border: buttonShape === shape.id
-                                                            ? '2px solid #d4af37'
-                                                            : '2px solid rgba(212, 175, 55, 0.3)',
-                                                        color: buttonShape === shape.id ? '#0d0d0d' : '#f5f5dc',
-                                                        fontWeight: 600,
-                                                        cursor: 'pointer',
-                                                        transition: 'all 0.3s',
-                                                        fontSize: '0.9rem',
-                                                        fontFamily: 'var(--font-cinzel), serif',
-                                                        letterSpacing: '0.05em',
-                                                        textTransform: 'uppercase'
-                                                    }}
+                                                    className={`${styles.buttonShapeBtn} ${buttonShape === shape.id ? styles.buttonShapeBtnActive : ''}`}
+                                                    style={{ borderRadius: shape.radius }}
                                                 >
                                                     {shape.name}
                                                 </button>
@@ -1326,17 +1310,11 @@ export default function DashboardPage() {
                                         </div>
 
                                         {/* Preview */}
-                                        <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: 'rgba(26, 22, 20, 0.4)', borderRadius: '12px', border: '2px solid rgba(212, 175, 55, 0.2)' }}>
-                                            <h4 style={{ marginBottom: '1rem', fontSize: '0.9rem', color: '#d4af37', fontFamily: 'var(--font-cinzel), serif' }}>Preview</h4>
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                                <div style={{
-                                                    padding: '1rem 1.5rem',
-                                                    borderRadius: buttonShape === 'rounded' ? '16px' : buttonShape === 'pill' ? '50px' : buttonShape === 'sharp' ? '0px' : '8px',
-                                                    background: 'rgba(26, 22, 20, 0.6)',
-                                                    border: '2px solid rgba(212, 175, 55, 0.4)',
-                                                    color: '#f5f5dc',
-                                                    textAlign: 'center',
-                                                    fontWeight: 600
+                                        <div className={styles.appearancePreviewBox}>
+                                            <h4 className={styles.appearancePreviewTitle}>Preview</h4>
+                                            <div className={styles.sampleButtonContainer}>
+                                                <div className={styles.sampleButton} style={{
+                                                    borderRadius: buttonShape === 'rounded' ? '16px' : buttonShape === 'pill' ? '50px' : buttonShape === 'sharp' ? '0px' : '8px'
                                                 }}>
                                                     Sample Link Button
                                                 </div>

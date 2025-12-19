@@ -1,40 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Home() {
-  const heroRef = useRef<HTMLElement>(null);
 
+  // Parallax removed in favor of CSS "Tire Cycle" animation
   useEffect(() => {
-    // Parallax & Mouse Move Effect for Hero Images
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-
-      // Calculate mouse position relative to center (-1 to 1)
-      const xPos = (clientX / innerWidth - 0.5) * 2;
-      const yPos = (clientY / innerHeight - 0.5) * 2;
-
-      const items = heroRef.current.querySelectorAll(`.${styles.heroFloatingImg}`);
-
-      items.forEach((item, index) => {
-        // Different speeds for depth effect
-        const speed = (index + 1) * 15;
-        const xOffset = xPos * speed;
-        const yOffset = yPos * speed;
-
-        (item as HTMLElement).style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
     // Scroll animation observer
     const observer = new IntersectionObserver(
       (entries) => {
@@ -56,7 +31,6 @@ export default function Home() {
     });
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       observer.disconnect();
     };
   }, []);
@@ -65,28 +39,28 @@ export default function Home() {
     <main className={styles.main}>
       <Navbar />
 
-      {/* Hero Section - Interactive & Parallax */}
-      <section className={styles.hero} ref={heroRef}>
+      {/* Hero Section - "Tire Cycle" Orbit */}
+      <section className={styles.hero}>
 
-        {/* Floating Travel Images (Unsplash) */}
+        {/* Floating Travel Images (Unsplash) - Orbiting */}
         <div className={styles.heroVisuals}>
           <div className={`${styles.heroFloatingImg} ${styles.img1}`}>
             <img
-              src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=400&q=80"
+              src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
               alt="Beach Vacation"
               className={styles.visualImg}
             />
           </div>
           <div className={`${styles.heroFloatingImg} ${styles.img2}`}>
             <img
-              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=400&q=80"
+              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=300&q=80"
               alt="City Exploration"
               className={styles.visualImg}
             />
           </div>
           <div className={`${styles.heroFloatingImg} ${styles.img3}`}>
             <img
-              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80"
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=300&q=80"
               alt="Mountain Adventure"
               className={styles.visualImg}
             />
@@ -104,7 +78,7 @@ export default function Home() {
               <span className={styles.wordHighlight}>journey.</span>
             </h1>
 
-            <p className={styles.heroSubtitle}>
+            <p className={`${styles.heroSubtitle} ${styles.heroSubtitleGradient}`}>
               Transform your travel recommendations into a stunning visual story.
               Inspire others with your authentic experiences.
             </p>

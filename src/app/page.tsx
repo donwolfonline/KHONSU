@@ -68,16 +68,28 @@ export default function Home() {
       {/* Hero Section - Interactive & Parallax */}
       <section className={styles.hero} ref={heroRef}>
 
-        {/* Floating Travel Images (Replacing Emojis) */}
+        {/* Floating Travel Images (Unsplash) */}
         <div className={styles.heroVisuals}>
           <div className={`${styles.heroFloatingImg} ${styles.img1}`}>
-            <Image src="/hero-img-1.png" alt="Travel" width={200} height={260} className={styles.visualImg} />
+            <img
+              src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=400&q=80"
+              alt="Beach Vacation"
+              className={styles.visualImg}
+            />
           </div>
           <div className={`${styles.heroFloatingImg} ${styles.img2}`}>
-            <Image src="/hero-img-2.png" alt="Adventure" width={180} height={240} className={styles.visualImg} />
+            <img
+              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=400&q=80"
+              alt="City Exploration"
+              className={styles.visualImg}
+            />
           </div>
           <div className={`${styles.heroFloatingImg} ${styles.img3}`}>
-            <Image src="/hero-img-3.png" alt="Discover" width={220} height={280} className={styles.visualImg} />
+            <img
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80"
+              alt="Mountain Adventure"
+              className={styles.visualImg}
+            />
           </div>
         </div>
 
@@ -250,7 +262,7 @@ export default function Home() {
         <div className="container">
           <div className={styles.footerTop}>
             <div className={styles.footerBrand}>
-              <Image src="/thatch-full-logo.png" alt="Thatch" width={100} height={26} />
+              <Image src="/thatch-full-logo.png" alt="Thatch" width={120} height={32} />
             </div>
             <div className={styles.footerLinks}>
               <Link href="/about">About</Link>

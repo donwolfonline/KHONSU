@@ -16,6 +16,7 @@ export default function DashboardPage() {
     const [previewTab, setPreviewTab] = useState('profile');
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState(''); // Email state
     const [bio, setBio] = useState('');
     const [image, setImage] = useState('');
     const [selectedTheme, setSelectedTheme] = useState('pharaoh');
@@ -35,6 +36,10 @@ export default function DashboardPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMessage, setPasswordMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
     const [changingPassword, setChangingPassword] = useState(false);
+
+    // Email change state
+    const [emailMessage, setEmailMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+    const [changingEmail, setChangingEmail] = useState(false);
 
     // Sync URL when tab changes
     const handleTabChange = (tab: string) => {
@@ -242,6 +247,8 @@ export default function DashboardPage() {
                 setUsername(data.user.username || '');
                 setBio(data.user.bio || '');
                 setImage(data.user.image || '');
+                setEmail(data.user.email || ''); // Populate email
+                setEmail(data.user.email || ''); // Set email
                 setSelectedTheme(data.user.themeId || 'purple');
                 setCustomBackground(data.user.customBackground || '');
                 setFontColor(data.user.fontColor || '#ffffff');
@@ -684,6 +691,36 @@ export default function DashboardPage() {
             setPasswordMessage({ type: 'error', text: 'An error occurred. Please try again.' });
         } finally {
             setChangingPassword(false);
+        }
+    };
+
+    const handleEmailChange = async () => {
+        setEmailMessage(null);
+        if (!email) {
+            setEmailMessage({ type: 'error', text: 'Email is required' });
+            return;
+        }
+
+        setChangingEmail(true);
+        try {
+            const res = await fetch('/api/profile', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Failed to update email');
+            }
+
+            setEmailMessage({ type: 'success', text: 'Email updated successfully' });
+        } catch (error: any) {
+            console.error('Failed to update email:', error);
+            setEmailMessage({ type: 'error', text: error.message || 'An error occurred' });
+        } finally {
+            setChangingEmail(false);
         }
     };
 
@@ -1343,16 +1380,56 @@ export default function DashboardPage() {
                                 </div>
 
                                 <div className={styles.formGroup} style={{ marginTop: '2rem' }}>
+
+                                    {/* Email Change Section */}
+                                    <div style={{ marginBottom: '3rem' }}>
+                                        <h3 style={{ marginBottom: '1rem' }}>Account Information</h3>
+                                        {emailMessage && (
+                                            <div style={{
+                                                padding: '0.75rem',
+                                                borderRadius: 'var(--radius)',
+                                                marginBottom: '1rem',
+                                                backgroundColor: emailMessage.type === 'success' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                                                border: `1px solid ${emailMessage.type === 'success' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
+                                                color: emailMessage.type === 'success' ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)',
+                                                fontSize: '0.9rem'
+                                            }}>
+                                                {emailMessage.text}
+                                            </div>
+                                        )}
+                                        <div className={styles.formGroup}>
+                                            <label>Email Address</label>
+                                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                                <input
+                                                    type="email"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    placeholder="Enter your email"
+                                                    disabled={changingEmail}
+                                                />
+                                                <button
+                                                    onClick={handleEmailChange}
+                                                    className="btn btn-primary"
+                                                    disabled={changingEmail}
+                                                    style={{ whiteSpace: 'nowrap' }}
+                                                >
+                                                    {changingEmail ? 'Updating...' : 'Update Email'}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <h3 style={{ marginBottom: '1rem' }}>Change Password</h3>
 
                                     {passwordMessage && (
                                         <div style={{
                                             padding: '0.75rem',
+                                            borderRadius: 'var(--radius)',
                                             marginBottom: '1rem',
-                                            borderRadius: '8px',
                                             backgroundColor: passwordMessage.type === 'success' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
                                             border: `1px solid ${passwordMessage.type === 'success' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
                                             color: passwordMessage.type === 'success' ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)',
+                                            fontSize: '0.9rem'
                                         }}>
                                             {passwordMessage.text}
                                         </div>
@@ -1391,14 +1468,16 @@ export default function DashboardPage() {
                                         />
                                     </div>
 
-                                    <button
-                                        className="btn btn-primary"
-                                        onClick={handlePasswordChange}
-                                        disabled={changingPassword}
-                                        style={{ marginTop: '1rem' }}
-                                    >
-                                        {changingPassword ? 'Changing Password...' : 'Change Password'}
-                                    </button>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                        <button
+                                            className="btn btn-primary"
+                                            onClick={handlePasswordChange}
+                                            disabled={changingPassword}
+                                            style={{ marginTop: '1rem' }}
+                                        >
+                                            {changingPassword ? 'Changing Password...' : 'Change Password'}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         )}

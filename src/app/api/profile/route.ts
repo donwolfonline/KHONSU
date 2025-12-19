@@ -46,6 +46,7 @@ export async function GET() {
                 fontColor: true,
                 fontFamily: true,
                 buttonShape: true,
+                email: true,
             },
         });
 
@@ -79,7 +80,7 @@ export async function PUT(req: Request) {
 
         const body = await req.json();
         console.log('Profile update request body:', body);
-        const { name, bio, image, themeId, username, customBackground, fontColor, fontFamily, buttonShape } = body;
+        const { name, bio, image, themeId, username, customBackground, fontColor, fontFamily, buttonShape, email } = body;
 
         // Check username uniqueness if it's being updated
         if (username) {
@@ -91,6 +92,21 @@ export async function PUT(req: Request) {
                 console.log('Username taken:', username);
                 return NextResponse.json(
                     { error: 'Username is already taken' },
+                    { status: 400 }
+                );
+            }
+        }
+
+        // Check email uniqueness if it's being updated
+        if (email) {
+            const existingUser = await prisma.user.findUnique({
+                where: { email },
+            });
+
+            if (existingUser && existingUser.id !== userId) {
+                console.log('Email taken:', email);
+                return NextResponse.json(
+                    { error: 'Email is already taken' },
                     { status: 400 }
                 );
             }
@@ -108,6 +124,7 @@ export async function PUT(req: Request) {
                 ...(fontColor !== undefined && { fontColor }),
                 ...(fontFamily !== undefined && { fontFamily }),
                 ...(buttonShape !== undefined && { buttonShape }),
+                ...(email !== undefined && { email }),
             },
             select: {
                 id: true,
@@ -120,6 +137,7 @@ export async function PUT(req: Request) {
                 fontColor: true,
                 fontFamily: true,
                 buttonShape: true,
+                email: true,
             },
         });
 

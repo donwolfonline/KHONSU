@@ -32,13 +32,13 @@ export default function Navbar() {
             <div className={`container ${styles.container}`}>
                 <Link href="/" className={styles.logo}>
                     <Image
-                        src="/khonsu-logo.png"
-                        alt="Khonsu Logo"
-                        width={50}
-                        height={50}
-                        className={styles.khonsuIcon}
+                        src="/thatch-full-logo.png"
+                        alt="Thatch"
+                        width={120}
+                        height={32}
+                        className={styles.logoImage}
+                        priority
                     />
-                    <span className={styles.khonsuText}>KHONSU</span>
                 </Link>
                 <div className={styles.actions}>
                     <a
@@ -46,7 +46,7 @@ export default function Navbar() {
                         onClick={handleLoginClick}
                         className={styles.loginLink}
                     >
-                        Login
+                        Log in
                     </a>
                     <Link href="/register" className="btn btn-primary">
                         Get Started

@@ -51,13 +51,13 @@ export default function RegisterPage() {
                 <div className={styles.header}>
                     <Link href="/" className={styles.logo}>
                         <Image
-                            src="/khonsu-logo.png"
-                            alt="Khonsu Logo"
-                            width={60}
-                            height={60}
-                            style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 15px rgba(212, 175, 55, 0.8))', marginRight: '0.75rem' }}
+                            src="/thatch-logo.png"
+                            alt="Thatch Logo"
+                            width={50}
+                            height={50}
+                            style={{ marginRight: '0.75rem' }}
                         />
-                        <span style={{ fontFamily: 'var(--font-cinzel), serif', fontSize: '1.8rem', fontWeight: 700, letterSpacing: '0.15em', color: '#d4af37', textShadow: '0 0 20px rgba(212, 175, 55, 0.5)' }}>KHONSU</span>
+                        <span style={{ fontFamily: 'var(--font-poppins), sans-serif', fontSize: '1.6rem', fontWeight: 600, letterSpacing: '-0.01em', color: '#1A1A1A' }}>thatch</span>
                     </Link>
                     <h1 className={styles.title}>Create an account</h1>
                     <p className={styles.subtitle}>Start building your bio page today</p>

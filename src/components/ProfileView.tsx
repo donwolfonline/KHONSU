@@ -44,7 +44,7 @@ export default function ProfileView({ username, image, bio, links }: ProfileProp
             </div>
 
             <div className={styles.footer}>
-                <p>Powered by <strong>TravLink</strong></p>
+                <p>Powered by <strong>Thatch</strong></p>
             </div>
         </div>
     );

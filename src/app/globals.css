@@ -1,45 +1,47 @@
 :root {
-  /* Egyptian Pharaoh Color Palette - Dark Granite Theme */
-  --background: #0d0d0d;
-  /* Deep black stone */
-  --foreground: #f5f5dc;
-  /* Papyrus white */
+  /* Thatch Light Theme - Orange/Coral Accent */
+  --background: #FFFFFF;
+  /* Pure white */
+  --foreground: #1A1A1A;
+  /* Dark text */
 
-  --primary: #d4af37;
-  /* Egyptian gold */
-  --primary-hover: #b8960f;
-  /* Darker gold */
-  --primary-foreground: #0d0d0d;
-  /* Dark text on gold */
+  --primary: #FF6B4A;
+  /* Coral/Orange */
+  --primary-hover: #F96854;
+  /* Darker coral */
+  --primary-foreground: #FFFFFF;
+  /* White text on orange */
 
-  --secondary: #1a1614;
-  /* Dark granite */
-  --secondary-hover: #2a2420;
-  /* Lighter granite */
-  --secondary-foreground: #d4af37;
-  /* Gold text */
+  --secondary: #FFF9F7;
+  /* Light peach/cream background */
+  --secondary-hover: #FFF5F2;
+  /* Lighter peach on hover */
+  --secondary-foreground: #1A1A1A;
+  /* Dark text */
 
-  --accent: #8b4513;
-  /* Terracotta */
-  --accent-foreground: #f5f5dc;
+  --accent: #FFE8E3;
+  /* Light coral/peach */
+  --accent-foreground: #1A1A1A;
 
-  --muted: #4a4a4a;
-  --muted-foreground: #9a9a8a;
+  --muted: #F0F0F0;
+  /* Light gray */
+  --muted-foreground: #6B6B6B;
+  /* Medium gray text */
 
-  --border: #2a2420;
-  /* Granite border */
-  --input: #1a1614;
-  --ring: #d4af37;
-  /* Gold ring */
+  --border: #E5E5E5;
+  /* Light gray border */
+  --input: #FFFFFF;
+  --ring: #FF6B4A;
+  /* Orange focus ring */
 
-  --radius: 0.25rem;
-  /* Sharp Egyptian edges */
+  --radius: 0.75rem;
+  /* Rounded corners */
 
-  /* Egyptian Gradients */
-  --gradient-primary: linear-gradient(135deg, #d4af37 0%, #b8960f 100%);
-  --gradient-dark: linear-gradient(to bottom, #0d0d0d, #1a1614);
-  --gradient-stone: linear-gradient(135deg, #2a2420 0%, #1a1614 100%);
-  --gradient-royal: linear-gradient(135deg, #d4af37 0%, #8b4513 50%, #d4af37 100%);
+  /* Thatch Gradients */
+  --gradient-primary: linear-gradient(135deg, #FF6B4A 0%, #F96854 100%);
+  --gradient-light: linear-gradient(to bottom, #FFFFFF, #FFF9F7);
+  --gradient-peach: linear-gradient(135deg, #FFF9F7 0%, #FFE8E3 100%);
+  --gradient-hero: linear-gradient(135deg, #FFF5F2 0%, #FFFFFF 100%);
 
   /* Font Families */
   --font-inter: var(--font-inter);
@@ -48,7 +50,6 @@
   --font-montserrat: var(--font-montserrat);
   --font-playfair: var(--font-playfair);
   --font-lora: var(--font-lora);
-  --font-cinzel: var(--font-cinzel);
 }
 
 * {
@@ -61,12 +62,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -76,7 +78,7 @@ a {
   text-decoration: none;
 }
 
-/* Egyptian-Inspired Utility Classes */
+/* Thatch Utility Classes */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -94,92 +96,119 @@ a {
   cursor: pointer;
   border: 2px solid transparent;
   font-size: 0.95rem;
-  font-family: var(--font-cinzel), serif;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: var(--primary-foreground);
-  border-color: #d4af37;
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #FF6B4A;
+  box-shadow: 0 2px 12px rgba(255, 107, 74, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: #b8960f;
+  box-shadow: 0 4px 20px rgba(255, 107, 74, 0.35);
+  background: linear-gradient(135deg, #F96854 0%, #FF6B4A 100%);
 }
 
 .btn-secondary {
-  background: var(--gradient-stone);
-  color: var(--secondary-foreground);
-  border: 2px solid rgba(212, 175, 55, 0.3);
+  background: var(--secondary);
+  color: var(--foreground);
+  border: 2px solid var(--border);
 }
 
 .btn-secondary:hover {
   background: var(--secondary-hover);
-  border-color: rgba(212, 175, 55, 0.5);
+  border-color: var(--primary);
   transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .btn-gradient {
-  background: var(--gradient-royal);
+  background: var(--gradient-primary);
   color: var(--primary-foreground);
-  border: 2px solid #d4af37;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  border: 2px solid #FF6B4A;
+  box-shadow: 0 2px 16px rgba(255, 107, 74, 0.3);
 }
 
 .btn-gradient:hover {
-  opacity: 0.95;
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 4px 24px rgba(255, 107, 74, 0.4);
+}
+
+.btn-full {
+  width: 100%;
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(26, 22, 20, 0.8) 0%, rgba(42, 36, 32, 0.6) 100%);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .text-gradient {
-  background: var(--gradient-royal);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
 
-/* Egyptian decorative border pattern */
-.egyptian-border {
-  position: relative;
+/* Orange glow effect */
+.orange-glow {
+  box-shadow: 0 0 30px rgba(255, 107, 74, 0.3);
 }
 
-.egyptian-border::before,
-.egyptian-border::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: repeating-linear-gradient(90deg,
-      #d4af37 0px,
-      #d4af37 10px,
-      transparent 10px,
-      transparent 20px,
-      #8b4513 20px,
-      #8b4513 30px,
-      transparent 30px,
-      transparent 40px);
+/* Subtle shadow for depth */
+.card-shadow {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.egyptian-border::before {
-  top: 0;
+/* Scroll-triggered animations */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
 }
 
-.egyptian-border::after {
-  bottom: 0;
+[data-animate].animateIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -14,25 +14,25 @@ export default function DemoPage() {
 
     // Demo profile data
     const profile = {
-        username: 'khonsu_demo',
-        name: 'Khonsu Demo',
-        bio: '🏛️ Explore the mystical Egyptian-themed Khonsu platform. One link for your digital universe under the moon\'s glow.',
-        image: '/khonsu-logo.png',
-        themeId: 'pharaoh',
+        username: 'thatch_demo',
+        name: 'Thatch Demo',
+        bio: '✨ Curate your journey with Thatch. Share your favorite spots, guide others, and tell your travel story.',
+        image: '/thatch-logo.png',
+        themeId: 'coral',
     };
 
     const links = [
         {
             id: '1',
-            title: '🌙 Official Website',
-            url: 'https://khonsu.example.com',
+            title: '🌍 Official Website',
+            url: 'https://thatch.example.com',
             type: 'link',
             isVisible: true
         },
         {
             id: '2',
             title: '📸 Instagram',
-            url: 'https://instagram.com/khonsu',
+            url: 'https://instagram.com/thatch',
             type: 'social',
             isVisible: true
         },
@@ -47,33 +47,40 @@ export default function DemoPage() {
         {
             id: '4',
             title: '💼 LinkedIn',
-            url: 'https://linkedin.com/company/khonsu',
+            url: 'https://linkedin.com/company/thatch',
             type: 'social',
             isVisible: true
         },
         {
             id: '5',
             title: '🐦 Twitter',
-            url: 'https://twitter.com/khonsu',
+            url: 'https://twitter.com/thatch',
             type: 'social',
             isVisible: true
         },
+        {
+            id: '6',
+            title: 'Contact',
+            url: 'mailto:contact@thatch.com',
+            type: 'link',
+            isVisible: true
+        }
     ];
 
     const stories = [
         {
             id: '1',
-            imageUrl: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=400&h=600&fit=crop',
+            imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=600&fit=crop',
             createdAt: new Date().toISOString()
         },
         {
             id: '2',
-            imageUrl: 'https://images.unsplash.com/photo-1539768942893-daf53e448371?w=400&h=600&fit=crop',
+            imageUrl: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=600&fit=crop',
             createdAt: new Date().toISOString()
         },
         {
             id: '3',
-            imageUrl: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=400&h=600&fit=crop',
+            imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop',
             createdAt: new Date().toISOString()
         },
     ];
@@ -81,35 +88,35 @@ export default function DemoPage() {
     const places = [
         {
             id: '1',
-            title: 'Pyramids of Giza',
-            description: 'Ancient wonders that stand as a testament to human ingenuity and the glory of pharaohs.',
-            imageUrl: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800&h=600&fit=crop',
-            locationLink: 'https://maps.google.com/?q=Pyramids+of+Giza',
+            title: 'Hidden Beach Cove',
+            description: 'A secluded paradise with crystal clear waters and white sand. Perfect for a morning swim.',
+            imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop',
+            locationLink: 'https://maps.google.com/?q=Hidden+Beach',
             rating: 5
         },
         {
             id: '2',
-            title: 'Luxor Temple',
-            description: 'A magnificent temple complex on the east bank of the Nile, dedicated to the rejuvenation of kingship.',
-            imageUrl: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=800&h=600&fit=crop',
-            locationLink: 'https://maps.google.com/?q=Luxor+Temple',
+            title: 'Urban Coffee Roasters',
+            description: 'The best artisanal coffee in the city. Great atmosphere for working or meeting friends.',
+            imageUrl: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800&h=600&fit=crop',
+            locationLink: 'https://maps.google.com/?q=Coffee+Shop',
             rating: 5
         },
         {
             id: '3',
-            title: 'Valley of the Kings',
-            description: 'The burial ground of Egypt\'s most powerful pharaohs, including the famous tomb of Tutankhamun.',
-            imageUrl: 'https://images.unsplash.com/photo-1539768942893-daf53e448371?w=800&h=600&fit=crop',
-            locationLink: 'https://maps.google.com/?q=Valley+of+the+Kings',
+            title: 'Mountain Viewpoint',
+            description: 'Breathtaking panoramic views of the entire valley. Especially stunning at sunrise.',
+            imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            locationLink: 'https://maps.google.com/?q=Mountain+View',
             rating: 5
         },
     ];
 
     const themes = {
-        pharaoh: 'linear-gradient(135deg, #0d0d0d 0%, #1a1614 50%, #0d0d0d 100%)',
+        coral: 'linear-gradient(135deg, #FFF9F7 0%, #FFF5F2 100%)', // Thatch Light Theme
     };
 
-    const backgroundStyle = themes.pharaoh;
+    const backgroundStyle = themes.coral;
 
     const getSocialIcon = (url: string) => {
         const lowerUrl = url.toLowerCase();
@@ -147,15 +154,15 @@ export default function DemoPage() {
                     <span style={{
                         display: 'inline-block',
                         padding: '0.5rem 1.5rem',
-                        background: 'linear-gradient(135deg, #d4af37 0%, #b8960f 100%)',
-                        color: '#0d0d0d',
+                        background: 'linear-gradient(135deg, #FF6B4A 0%, #F96854 100%)',
+                        color: '#FFFFFF',
                         borderRadius: '24px',
-                        fontWeight: 700,
+                        fontWeight: 600,
                         fontSize: '0.9rem',
-                        fontFamily: 'var(--font-cinzel), serif',
-                        letterSpacing: '0.05em',
+                        fontFamily: 'var(--font-poppins), sans-serif',
+                        letterSpacing: '0.02em',
                         textTransform: 'uppercase',
-                        boxShadow: '0 4px 16px rgba(212, 175, 55, 0.4)'
+                        boxShadow: '0 4px 16px rgba(255, 107, 74, 0.3)'
                     }}>
                         ✨ Demo Profile
                     </span>
@@ -163,21 +170,41 @@ export default function DemoPage() {
 
                 {/* Profile Section */}
                 <div className={styles.profileSection}>
-                    <div className={styles.imageWrapper}>
+                    <div
+                        className={`${styles.imageWrapper} ${stories.length > 0 ? styles.hasStories : ''}`}
+                        onClick={() => {
+                            if (stories.length > 0) {
+                                setShowStoryViewer(true);
+                            }
+                        }}
+                    >
+                        <div className={styles.storyRingSvg}>
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="storyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#f09433" />
+                                        <stop offset="25%" stopColor="#e6683c" />
+                                        <stop offset="50%" stopColor="#dc2743" />
+                                        <stop offset="75%" stopColor="#cc2366" />
+                                        <stop offset="100%" stopColor="#bc1888" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="none" stroke="url(#storyGradient)" strokeWidth="3" />
+                            </svg>
+                        </div>
                         <Image
-                            src="/khonsu-logo.png"
-                            alt="Khonsu Demo"
+                            src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=400&h=400&fit=crop"
+                            alt="Thatch Demo"
                             width={120}
                             height={120}
                             className={styles.profileImage}
-                            style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 20px rgba(212, 175, 55, 0.8))' }}
                         />
                     </div>
-                    <h1 className={styles.name} style={{ fontFamily: 'var(--font-cinzel), serif', color: '#d4af37' }}>
+                    <h1 className={styles.name} style={{ fontFamily: 'var(--font-poppins), sans-serif', color: '#1A1A1A' }}>
                         {profile.name}
                     </h1>
                     <p className={styles.username}>@{profile.username}</p>
-                    <p className={styles.bio}>{profile.bio}</p>
+                    <p className={styles.bio} style={{ color: '#555' }}>{profile.bio}</p>
 
                     <button onClick={handleShare} className={styles.shareButton}>
                         {copied ? '✓ Copied!' : '🔗 Share Profile'}
@@ -200,73 +227,49 @@ export default function DemoPage() {
                     </button>
                 </div>
 
-                {/* Profile Tab - Links and Stories */}
+                {/* Profile Tab - Links */}
                 {activeTab === 'profile' && (
-                    <>
-                        {/* Stories */}
-                        {stories.length > 0 && (
-                            <div className={styles.storiesSection}>
-                                <div className={styles.storiesGrid}>
-                                    {stories.map((story, index) => (
-                                        <div
-                                            key={story.id}
-                                            className={styles.storyCircle}
-                                            style={{ backgroundImage: `url(${story.imageUrl})` }}
-                                            onClick={() => {
-                                                setSelectedStoryIndex(index);
-                                                setShowStoryViewer(true);
-                                            }}
-                                        >
-                                            <div className={styles.storyRing}></div>
+                    <div className={styles.linksSection}>
+                        {links.map((link) => {
+                            const youtubeId = link.type === 'video' ? getYouTubeId(link.url) : null;
+                            const isExpanded = expandedVideoId === link.id;
+
+                            return (
+                                <div key={link.id}>
+                                    <a
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.linkCard}
+                                        onClick={(e) => {
+                                            if (youtubeId) {
+                                                e.preventDefault();
+                                                setExpandedVideoId(isExpanded ? null : link.id);
+                                            }
+                                        }}
+                                    >
+                                        <span className={styles.linkIcon}>{getSocialIcon(link.url)}</span>
+                                        <span className={styles.linkTitle}>{link.title}</span>
+                                        {youtubeId && <span className={styles.playIcon}>▶</span>}
+                                    </a>
+
+                                    {youtubeId && isExpanded && (
+                                        <div className={styles.videoEmbed}>
+                                            <iframe
+                                                width="100%"
+                                                height="315"
+                                                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=${link.autoplay ? 1 : 0}`}
+                                                title={link.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                            />
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
-                            </div>
-                        )}
-
-                        {/* Links */}
-                        <div className={styles.linksSection}>
-                            {links.map((link) => {
-                                const youtubeId = link.type === 'video' ? getYouTubeId(link.url) : null;
-                                const isExpanded = expandedVideoId === link.id;
-
-                                return (
-                                    <div key={link.id}>
-                                        <a
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={styles.linkCard}
-                                            onClick={(e) => {
-                                                if (youtubeId) {
-                                                    e.preventDefault();
-                                                    setExpandedVideoId(isExpanded ? null : link.id);
-                                                }
-                                            }}
-                                        >
-                                            <span className={styles.linkIcon}>{getSocialIcon(link.url)}</span>
-                                            <span className={styles.linkTitle}>{link.title}</span>
-                                            {youtubeId && <span className={styles.playIcon}>▶</span>}
-                                        </a>
-
-                                        {youtubeId && isExpanded && (
-                                            <div className={styles.videoEmbed}>
-                                                <iframe
-                                                    width="100%"
-                                                    height="315"
-                                                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=${link.autoplay ? 1 : 0}`}
-                                                    title={link.title}
-                                                    frameBorder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowFullScreen
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </>
+                            );
+                        })}
+                    </div>
                 )}
 
                 {/* Places Tab */}
@@ -300,13 +303,15 @@ export default function DemoPage() {
             </div>
 
             {/* Story Viewer */}
-            {showStoryViewer && (
-                <StoryViewer
-                    stories={stories}
-                    initialIndex={selectedStoryIndex}
-                    onClose={() => setShowStoryViewer(false)}
-                />
-            )}
-        </div>
+            {
+                showStoryViewer && (
+                    <StoryViewer
+                        stories={stories}
+                        initialIndex={selectedStoryIndex}
+                        onClose={() => setShowStoryViewer(false)}
+                    />
+                )
+            }
+        </div >
     );
 }

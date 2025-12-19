@@ -51,8 +51,8 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Khonsu - Your Digital Presence Under the Moon",
-  description: "Connect your digital universe. Share your presence, stories, and creativity in one mystical, personalized page.",
+  title: "Thatch - Curate Your Journey",
+  description: "Share your travel recommendations, guide others to hidden gems, and protect your digital presence with a single, beautiful link.",
 };
 
 export default function RootLayout({

@@ -124,14 +124,32 @@ export default function DashboardPage() {
 
     const themes = [
         {
+            id: 'coral',
+            name: '🌺 Coral',
+            gradient: 'linear-gradient(135deg, #FFF5F2 0%, #FFFFFF 100%)',
+            textColor: '#1A1A1A',
+            secondaryTextColor: 'rgba(26, 26, 26, 0.7)',
+            accentColor: '#FF6B4A',
+            borderColor: 'rgba(229, 229, 229, 0.8)',
+            special: true // Flag to identify as special theme
+        },
+        {
+            id: 'traveler',
+            name: '✈️ Traveler',
+            gradient: 'linear-gradient(135deg, #5B21B6 0%, #1E293B 50%, #0F172A 100%)',
+            textColor: '#F1F5F9',
+            secondaryTextColor: 'rgba(241, 245, 249, 0.8)',
+            accentColor: '#A855F7',
+            borderColor: 'rgba(107, 70, 193, 0.3)'
+        },
+        {
             id: 'pharaoh',
-            name: '👑 Pharaoh',
+            name: '🏺 Ancient',
             gradient: 'linear-gradient(135deg, #0d0d0d 0%, #1a1614 50%, #0d0d0d 100%)',
             textColor: '#f5f5dc',
             secondaryTextColor: 'rgba(245, 245, 220, 0.8)',
             accentColor: '#d4af37',
-            borderColor: 'rgba(212, 175, 55, 0.3)',
-            special: true // Flag to identify as special theme
+            borderColor: 'rgba(212, 175, 55, 0.3)'
         },
         {
             id: 'purple',
@@ -281,24 +299,49 @@ export default function DashboardPage() {
         }
     };
 
+    // Mobile Menu State
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Auto-save state
+    const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+    const isFirstRun = useRef(true);
+
+    // Auto-save effect
+    useEffect(() => {
+        if (isFirstRun.current) {
+            isFirstRun.current = false;
+            return;
+        }
+
+        setSaveStatus('saving');
+        const timer = setTimeout(() => {
+            saveProfile();
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, [name, username, bio, image, selectedTheme, customBackground, fontColor, fontFamily, buttonShape]);
+
     const saveProfile = async () => {
         try {
             const res = await fetch('/api/profile', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, username, bio, image: image, themeId: selectedTheme, customBackground, fontColor, fontFamily, buttonShape }),
+                body: JSON.stringify({ name, username, bio, image, themeId: selectedTheme, customBackground, fontColor, fontFamily, buttonShape }),
             });
 
             if (res.ok) {
-                alert('Profile saved successfully!');
+                setSaveStatus('saved');
+                setTimeout(() => setSaveStatus('idle'), 2000);
             } else {
-                const data = await res.json();
-                alert(data.error || 'Failed to save profile');
+                setSaveStatus('error');
             }
         } catch (error) {
             console.error('Failed to save profile:', error);
+            setSaveStatus('error');
         }
     };
+
+
 
     const fetchPlaces = async () => {
         try {
@@ -692,21 +735,30 @@ export default function DashboardPage() {
                     <div className={styles.headerContent}>
                         <Link href="/" className={styles.logo}>
                             <Image
-                                src="/khonsu-logo.png"
-                                alt="Khonsu Logo"
-                                width={45}
-                                height={45}
-                                style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 12px rgba(212, 175, 55, 0.8))', marginRight: '0.5rem' }}
+                                src="/thatch-full-logo.png"
+                                alt="Thatch"
+                                width={110}
+                                height={30}
+                                style={{ height: '30px', width: 'auto' }}
                             />
-                            <span style={{ fontFamily: 'var(--font-cinzel), serif', fontSize: '1.4rem', fontWeight: 700, letterSpacing: '0.15em', color: '#d4af37', textShadow: '0 0 15px rgba(212, 175, 55, 0.5)' }}>KHONSU</span>
                         </Link>
                         <div className={styles.headerActions}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginRight: '1rem', fontSize: '0.9rem', fontWeight: 500 }}>
+                                {saveStatus === 'saving' && (
+                                    <span style={{ color: '#F59E0B' }}>Syncing...</span>
+                                )}
+                                {saveStatus === 'saved' && (
+                                    <span style={{ color: '#10B981' }}>Saved ✓</span>
+                                )}
+                                {saveStatus === 'error' && (
+                                    <span style={{ color: '#EF4444' }}>Error saving</span>
+                                )}
+                            </div>
+
                             <Link href={`/${username || 'preview'}`} target="_blank" className="btn btn-secondary">
                                 Preview
                             </Link>
-                            <button className="btn btn-primary" onClick={saveProfile} disabled={uploading}>
-                                {uploading ? 'Saving...' : 'Save Changes'}
-                            </button>
+                            {/* Auto-save enabled, no manual button needed */}
                             <button className="btn btn-secondary" onClick={handleLogout}>
                                 Logout
                             </button>
@@ -720,45 +772,53 @@ export default function DashboardPage() {
                 <div className={styles.grid}>
                     {/* Editor Sidebar */}
                     <div className={styles.editorPanel}>
-                        <div className={styles.tabs}>
+                        {/* Mobile Menu Trigger */}
+                        <button
+                            className={`${styles.mobileMenuTrigger} ${mobileMenuOpen ? styles.triggerActive : ''}`}
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? '✕' : '☰'}
+                        </button>
+
+                        <div className={`${styles.tabs} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>
                             <button
                                 className={`${styles.tab} ${activeTab === 'profile' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('profile')}
+                                onClick={() => { handleTabChange('profile'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>👤</span>
                                 <span className={styles.tabLabel}>Profile</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'links' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('links')}
+                                onClick={() => { handleTabChange('links'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🔗</span>
                                 <span className={styles.tabLabel}>Links</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'stories' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('stories')}
+                                onClick={() => { handleTabChange('stories'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>📸</span>
                                 <span className={styles.tabLabel}>Stories</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'places' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('places')}
+                                onClick={() => { handleTabChange('places'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🌍</span>
                                 <span className={styles.tabLabel}>Places</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'appearance' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('appearance')}
+                                onClick={() => { handleTabChange('appearance'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🎨</span>
                                 <span className={styles.tabLabel}>Appearance</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'settings' ? styles.tabActive : ''}`}
-                                onClick={() => handleTabChange('settings')}
+                                onClick={() => { handleTabChange('settings'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>⚙️</span>
                                 <span className={styles.tabLabel}>Settings</span>

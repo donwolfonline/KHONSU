@@ -1,43 +1,40 @@
-# <img width="50" height="50" alt="KHONSU" src="https://github.com/user-attachments/assets/6e266200-023c-4513-99ab-4e2049d40451" /> KHONSU
+# <img width="50" height="50" alt="Thatch" src="public/thatch-logo.png" /> Thatch
 
-> **One link to rule your digital universe under the moon's glow**
+> **Curate Your Journey**
 
-Khonsu is a premium Egyptian-themed link-in-bio platform featuring a mystical dark granite aesthetic with glassmorphism UI. Create your personalized profile page with links, stories, and places - all styled with the elegance of ancient Egypt.
+Thatch is a premium link-in-bio platform designed for travelers and creators. Featuring a clean, light aesthetic with vibrant coral accents, Thatch helps you showcase your links, stories, and favorite places in a unified, beautiful profile.
 
-![Khonsu Banner](https://img.shields.io/badge/Status-Production%20Ready-gold?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript) ![Prisma](https://img.shields.io/badge/Prisma-5.0-2D3748?style=for-the-badge&logo=prisma)
+![Thatch Banner](https://img.shields.io/badge/Status-Production%20Ready-FF6B4A?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript) ![Prisma](https://img.shields.io/badge/Prisma-5.0-2D3748?style=for-the-badge&logo=prisma)
 
 ---
 
 ## ✨ Features
 
-### � **Egyptian Pharaoh Theme**
-- **Dark Granite Aesthetic** - Deep stone backgrounds with gold accents
-- **Glassmorphism UI** - Liquid glass effects with backdrop blur
-- **Hieroglyphic Borders** - Authentic Egyptian decorative patterns
-- **Gold Gradients** - Royal Egyptian gold (#d4af37) throughout
-- **Cinzel Typography** - Classical serif font for that ancient elegance
+### 🌺 **Thatch Design System**
+- **Clean Light Aesthetic** - Fresh white backgrounds with soft shadows.
+- **Coral Accents** - Vibrant `#FF6B4A` primary color for energy.
+- **Creative Circle Tabs** - Unique, playful navigation design.
+- **Modern Typography** - Uses **Outfit** and **Inter** for modern readability.
 
 ### 👑 **Core Features**
-- **Custom Profile Links** - Unlimited social and website links
-- **Instagram-Style Stories** - 24-hour story highlights with viewer
-- **Places Collection** - Showcase special locations with maps
-- **Theme Customization** - 13+ premium themes including exclusive Pharaoh
-- **Video Embeds** - YouTube integration with autoplay support
-- **Button Shapes** - Customize link buttons (Rounded, Pill, Sharp, Soft)
-- **Real-time Preview** - Live mobile preview while editing
+- **Smart Auto-Save** - No more "Save" buttons. Changes sync automatically.
+- **Mobile Arc Menu** - Interactive "Fan Out" navigation for mobile devices.
+- **Story Ring** - Instagram-style story highlights around your profile picture.
+- **Custom Links** - Unlimited links with drag-and-drop reordering.
+- **Places Collection** - Share your favorite travel spots with images and ratings.
+- **Theme Engine** - Choose from curated themes like Coral, Ocean, and Sunset.
+- **Live Preview** - See your changes in real-time as you edit.
 
 ### 🔐 **Authentication & Security**
 - Secure email/password authentication
 - JWT session management
-- Protected routes and API endpoints
-- Password change functionality
+- Protected dashboard routes
+- Smart session handling
 
 ### 📱 **Responsive Design**
-- Mobile-first approach with optimized headers
-- Tablet and desktop optimized
-- Touch-friendly interactions
-- Smooth animations across all devices
-- Smart session handling with auto-redirects
+- **Mobile-First**: Optimized for all screen sizes.
+- **Interactive UI**: Floating action buttons (FAB) and creative interactions.
+- **Touch-Friendly**: Large touch targets and swipe gestures.
 
 ---
 
@@ -52,8 +49,8 @@ Khonsu is a premium Egyptian-themed link-in-bio platform featuring a mystical da
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/donwolfonline/KHONSU.git
-cd KHONSU
+git clone https://github.com/donwolfonline/TravLink.git
+cd TravLink
 ```
 
 2. **Install dependencies**
@@ -79,87 +76,49 @@ http://localhost:3000
 
 ---
 
-## 📂 Project Structure
-
-```
-KHONSU/
-├── src/
-│   ├── app/
-│   │   ├── (auth)/          # Authentication pages
-│   │   │   ├── login/
-│   │   │   └── register/
-│   │   ├── [username]/      # Public profile pages
-│   │   ├── dashboard/       # User dashboard
-│   │   ├── demo/           # Demo showcase page
-│   │   ├── api/            # API routes
-│   │   │   ├── auth/       # Auth endpoints
-│   │   │   ├── links/      # Links management
-│   │   │   ├── stories/    # Stories management
-│   │   │   ├── places/     # Places management
-│   │   │   └── profile/    # Profile data
-│   │   └── globals.css     # Egyptian theme styles
-│   ├── components/
-│   │   ├── Navbar.tsx      # Main navigation
-│   │   └── StoryViewer.tsx # Story viewer modal
-│   └── lib/
-│       └── prisma.ts       # Database client
-├── prisma/
-│   ├── schema.prisma       # Database schema
-│   └── migrations/         # Database migrations
-└── public/
-    ├── khonsu-logo.png     # Egyptian falcon logo
-    └── uploads/            # User uploaded files
-```
-
----
-
 ## 🎯 Features Guide
 
 ### Dashboard
+Navigate to `/dashboard` to curate your profile:
 
-Navigate to `/dashboard` after login to access:
+- **Profile 👤**: Edit bio, upload profile pick (with Story Ring support).
+- **Links 🔗**: Manage your links. Click to expand/collapse.
+- **Stories 📸**: Upload photo stories.
+- **Places 🌍**: Add travel recommendations.
+- **Appearance 🎨**: Switch themes, customize fonts and buttons.
+- **Settings ⚙️**: Account management.
 
-- **Profile Tab** - Edit name, bio, profile image
-- **Links Tab** - Add/edit/delete links with drag-to-reorder
-- **Stories Tab** - Upload 24-hour stories with preview
-- **Places Tab** - Add locations with images, descriptions, ratings
-- **Appearance Tab** - Choose from 13+ themes including Pharaoh
-- **Settings Tab** - Change password, view stats
-
-### Themes
-
-**Pharaoh Theme (Default)** - Egyptian design with:
-- Dark granite backgrounds
-- Gold accents and borders
-- Glassmorphism effects
-- Hieroglyphic patterns
-- Cinzel typography
-
-**Other Themes**: Purple Gradient, Pink Sunset, Ocean Blue, Dark Mode, Sunrise, Northern Lights, Cherry Blossom, Tropical, Sunset Beach, Galaxy, Forest, Fire
+### Mobile Experience
+On mobile, the dashboard uses a unique **"Arc Fan" Menu**. Click the button in the bottom-right corner to fan out your navigation options!
 
 ### Public Profile
-
-Access any profile at `/{username}`:
-- View all visible links
-- Browse stories with swipe viewer
-- Explore places on interactive map
-- Share profile with one click
-- Mobile optimized layout
-
-### Demo Page
-
-Visit `/demo` to see all features in action with sample data.
+Access your profile at `/{username}`:
+- Clean, list-based link layout.
+- Interactive Story Viewer.
+- Places grid with ratings.
+- "Save Contact" vCard support (coming soon).
 
 ---
 
 ## 🛠️ Development
 
 ### Environment Setup
-
 Create `.env` file in root:
 ```env
 DATABASE_URL="file:./dev.db"
 JWT_SECRET="your-secret-key-here"
+```
+
+### Key Commands
+```bash
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Manage Database
+npx prisma studio
 ```
 
 ### Database Commands
@@ -289,36 +248,26 @@ npx prisma generate
 
 ---
 
-## 🎨 Design System
+## 🎨 Design Tokens
 
 ### Colors
 ```css
-/* Egyptian Palette */
---background: #0d0d0d;        /* Deep black stone */
---foreground: #f5f5dc;        /* Papyrus white */
---primary: #d4af37;           /* Egyptian gold */
---secondary: #1a1614;         /* Dark granite */
---accent: #8b4513;            /* Terracotta */
---border: #2a2420;            /* Granite border */
+--primary: #FF6B4A;       /* Thatch Coral */
+--background: #FFFFFF;    /* Clean White */
+--foreground: #1A1A1A;    /* Dark Gray Text */
+--secondary: #F5F5F5;     /* Light Gray BG */
+--border: #E5E5E5;        /* Subtle Borders */
 ```
 
 ### Typography
-- **Headings**: Cinzel (serif, Egyptian-inspired)
-- **Body**: Inter/Geist Sans (modern, readable)
-- **Buttons**: Cinzel uppercase with wide letter-spacing
-
-### Spacing
-- Base unit: 1rem (16px)
-- Padding: 0.875rem - 2rem
-- Gaps: 0.75rem - 2rem
-- Border radius: 0.25rem (sharp Egyptian edges)
+- **Headings**: Outfit
+- **Body**: Inter
 
 ---
 
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
-
 1. Push to GitHub
 2. Import project in Vercel
 3. Add environment variables
@@ -380,7 +329,6 @@ npx prisma migrate deploy
 ---
 
 ## 📄 License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
@@ -403,8 +351,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with 🏛️ by the light of the moon**
+**Current Version: 2.0 (Thatch Rebrand)**
 
-*Khonsu - Egyptian god of the moon, time, and travelers*
+*Adventure Awaits.*
 
 </div>

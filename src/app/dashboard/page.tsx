@@ -1367,17 +1367,6 @@ export default function DashboardPage() {
                             <div className={styles.section}>
                                 <h2>Account Settings</h2>
 
-                                <div className={styles.formGroup}>
-                                    <label>Email</label>
-                                    <input
-                                        type="email"
-                                        defaultValue="test_ui@example.com"
-                                        disabled
-                                    />
-                                    <p style={{ fontSize: '0.85rem', color: 'var(--muted-foreground)', marginTop: '0.5rem' }}>
-                                        To change your username, go to the Profile tab
-                                    </p>
-                                </div>
 
                                 <div className={styles.formGroup} style={{ marginTop: '2rem' }}>
 

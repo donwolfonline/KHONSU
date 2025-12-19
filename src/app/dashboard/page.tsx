@@ -124,16 +124,6 @@ export default function DashboardPage() {
 
     const themes = [
         {
-            id: 'coral',
-            name: '🌺 Coral',
-            gradient: 'linear-gradient(135deg, #FFF5F2 0%, #FFFFFF 100%)',
-            textColor: '#1A1A1A',
-            secondaryTextColor: 'rgba(26, 26, 26, 0.7)',
-            accentColor: '#FF6B4A',
-            borderColor: 'rgba(229, 229, 229, 0.8)',
-            special: true // Flag to identify as special theme
-        },
-        {
             id: 'traveler',
             name: '✈️ Traveler',
             gradient: 'linear-gradient(135deg, #5B21B6 0%, #1E293B 50%, #0F172A 100%)',
@@ -172,13 +162,7 @@ export default function DashboardPage() {
             textColor: '#ffffff',
             secondaryTextColor: 'rgba(255, 255, 255, 0.8)'
         },
-        {
-            id: 'dark',
-            name: 'Dark Mode',
-            gradient: '#0a0a0a',
-            textColor: '#ffffff',
-            secondaryTextColor: 'rgba(255, 255, 255, 0.7)'
-        },
+
         {
             id: 'sunrise',
             name: 'Sunrise',

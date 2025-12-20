@@ -58,6 +58,10 @@
     align-items: start;
 }
 
+[dir="rtl"] .grid {
+    grid-template-columns: 380px minmax(0, 1fr);
+}
+
 .editorPanel {
     min-height: 400px;
     width: 100%;
@@ -491,6 +495,11 @@
     border-right: 1px solid var(--border);
 }
 
+[dir="rtl"] .urlPrefix {
+    border-right: none;
+    border-left: 1px solid var(--border);
+}
+
 .usernameField input {
     flex: 1;
     border: none;
@@ -731,6 +740,10 @@
 .placeLink:hover {
     color: #667eea;
     transform: translateX(2px);
+}
+
+[dir="rtl"] .placeLink:hover {
+    transform: translateX(-2px);
 }
 
 .newPlaceForm {
@@ -1770,6 +1783,7 @@
         white-space: nowrap;
     }
 }
+
 /* Appearance Tab - Button Shapes & Preview */
 .buttonShapeGrid {
     display: grid;
@@ -1790,7 +1804,7 @@
     font-family: var(--font-outfit), sans-serif;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .buttonShapeBtn:hover {
@@ -1804,7 +1818,7 @@
     background: #1A1A1A;
     border-color: #1A1A1A;
     color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
 }
 
@@ -1848,6 +1862,6 @@
     font-size: 1rem;
     width: 100%;
     max-width: 320px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
     cursor: default;
 }

@@ -5,8 +5,10 @@ import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
 
   // Parallax removed in favor of CSS "Tire Cycle" animation
   useEffect(() => {
@@ -73,22 +75,21 @@ export default function Home() {
 
             {/* New Attractive Copy */}
             <h1 className={styles.animatedTitle}>
-              <span className={styles.word}>Curate</span>{' '}
-              <span className={styles.word}>your</span>{' '}
-              <span className={styles.wordHighlight}>journey.</span>
+              <span className={styles.word}>{t('curate')}</span>{' '}
+              <span className={styles.word}>{t('your')}</span>{' '}
+              <span className={styles.wordHighlight}>{t('journey')}</span>
             </h1>
 
             <p className={`${styles.heroSubtitle} ${styles.heroSubtitleGradient}`}>
-              Transform your travel recommendations into a stunning visual story.
-              Inspire others with your authentic experiences.
+              {t('heroSubtitle')}
             </p>
 
             <div className={styles.heroCtas}>
               <Link href="/register" className={`btn btn-primary ${styles.pulseBtn}`}>
-                Start Creating Free
+                {t('startCreating')}
               </Link>
               <Link href="/demo" className="btn btn-secondary">
-                View Demo
+                {t('viewDemo')}
               </Link>
             </div>
           </div>
@@ -99,9 +100,9 @@ export default function Home() {
       <section className={styles.exploreSection} data-animate="fade-up">
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Where will you go next?</h2>
+            <h2 className={styles.sectionTitle}>{t('exploreTitle')}</h2>
             <p className={styles.sectionSubtitle}>
-              Explore trending destinations curated by travelers like you.
+              {t('exploreSubtitle')}
             </p>
           </div>
 
@@ -116,8 +117,8 @@ export default function Home() {
               </div>
               <div className={styles.cardOverlay}>
                 <span className={styles.categoryIcon}>🏖️</span>
-                <h3>Beach Escapes</h3>
-                <p>Sun-soaked paradises</p>
+                <h3>{t('beachEscapes')}</h3>
+                <p>{t('sunSoaked')}</p>
               </div>
             </div>
 
@@ -131,8 +132,8 @@ export default function Home() {
               </div>
               <div className={styles.cardOverlay}>
                 <span className={styles.categoryIcon}>🏙️</span>
-                <h3>Urban Stories</h3>
-                <p>City lights & culture</p>
+                <h3>{t('urbanStories')}</h3>
+                <p>{t('cityLights')}</p>
               </div>
             </div>
 
@@ -146,8 +147,8 @@ export default function Home() {
               </div>
               <div className={styles.cardOverlay}>
                 <span className={styles.categoryIcon}>⛰️</span>
-                <h3>High Altitudes</h3>
-                <p>Peaks & valleys</p>
+                <h3>{t('highAltitudes')}</h3>
+                <p>{t('peaksValleys')}</p>
               </div>
             </div>
           </div>
@@ -157,9 +158,9 @@ export default function Home() {
       {/* Features Section */}
       <section className={styles.features} data-animate="fade-up">
         <div className="container">
-          <h2 className={styles.sectionTitle}>Designed for Explorers</h2>
+          <h2 className={styles.sectionTitle}>{t('featuresTitle')}</h2>
           <p className={styles.sectionSubtitle}>
-            Everything you need to showcase your adventures.
+            {t('featuresSubtitle')}
           </p>
 
           <div className={styles.grid}>
@@ -167,24 +168,24 @@ export default function Home() {
               <div className={styles.featureIconWrapper}>
                 <span className={styles.featureIcon}>✨</span>
               </div>
-              <h3>Stunning Visuals</h3>
-              <p>Your photos take center stage with our immersive layouts.</p>
+              <h3>{t('visualsTitle')}</h3>
+              <p>{t('visualsDesc')}</p>
             </div>
 
             <div className={`glass-card ${styles.featureCard}`} data-animate="fade-up">
               <div className={styles.featureIconWrapper}>
                 <span className={styles.featureIcon}>🗺️</span>
               </div>
-              <h3>Interactive Maps</h3>
-              <p>Pin your favorite spots and guide others to hidden gems.</p>
+              <h3>{t('mapsTitle')}</h3>
+              <p>{t('mapsDesc')}</p>
             </div>
 
             <div className={`glass-card ${styles.featureCard}`} data-animate="fade-up">
               <div className={styles.featureIconWrapper}>
                 <span className={styles.featureIcon}>📱</span>
               </div>
-              <h3>Mobile Optimized</h3>
-              <p>Looks perfect on every device, everywhere you travel.</p>
+              <h3>{t('mobileTitle')}</h3>
+              <p>{t('mobileDesc')}</p>
             </div>
           </div>
         </div>
@@ -194,12 +195,12 @@ export default function Home() {
       <section className={styles.cta} data-animate="fade-up">
         <div className="container">
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Ready for takeoff?</h2>
+            <h2 className={styles.ctaTitle}>{t('readyTakeoff')}</h2>
             <p className={styles.ctaSubtitle}>
-              Join the new generation of travel storytellers.
+              {t('joinGeneration')}
             </p>
             <Link href="/register" className={`btn btn-gradient ${styles.pulseBtn}`}>
-              Join Thatch Free
+              {t('joinFree')}
             </Link>
           </div>
         </div>
@@ -209,8 +210,8 @@ export default function Home() {
       <section className={styles.appSection} data-animate="fade-up">
         <div className="container">
           <div className={styles.appContent}>
-            <h2>Take Thatch with you</h2>
-            <p>Plan, create, and share on the go. Download the mobile app.</p>
+            <h2>{t('takeThatch')}</h2>
+            <p>{t('appDesc')}</p>
             <div className={styles.appButtons}>
               <a href="#" className={styles.appBtn}>
                 <img
@@ -239,10 +240,10 @@ export default function Home() {
               <Image src="/thatch-full-logo.png" alt="Thatch" width={120} height={32} />
             </div>
             <div className={styles.footerLinks}>
-              <Link href="/about">About</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/careers">Careers</Link>
-              <Link href="/contact">Contact</Link>
+              <Link href="/about">{t('about')}</Link>
+              <Link href="/blog">{t('blog')}</Link>
+              <Link href="/careers">{t('careers')}</Link>
+              <Link href="/contact">{t('contact')}</Link>
             </div>
             <div className={styles.footerSocials}>
               <a href="#">Instagram</a>
@@ -251,10 +252,10 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>&copy; {new Date().getFullYear()} Thatch. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Thatch. {t('rights')}</p>
             <div className={styles.legalLinks}>
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms of Service</Link>
+              <Link href="/privacy">{t('privacy')}</Link>
+              <Link href="/terms">{t('terms')}</Link>
             </div>
           </div>
         </div>

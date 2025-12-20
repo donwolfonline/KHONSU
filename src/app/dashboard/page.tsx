@@ -7,7 +7,11 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import styles from './dashboard.module.css';
 import StoryViewer from '@/components/StoryViewer';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function DashboardPage() {
+    const { t, language, setLanguage } = useLanguage();
+    // ... existing state ...
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -766,22 +770,40 @@ export default function DashboardPage() {
                         <div className={styles.headerActions}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginRight: '1rem', fontSize: '0.9rem', fontWeight: 500 }}>
                                 {saveStatus === 'saving' && (
-                                    <span style={{ color: '#F59E0B' }}>Syncing...</span>
+                                    <span style={{ color: '#F59E0B' }}>{t('syncing')}</span>
                                 )}
                                 {saveStatus === 'saved' && (
-                                    <span style={{ color: '#10B981' }}>Saved ✓</span>
+                                    <span style={{ color: '#10B981' }}>{t('saved')}</span>
                                 )}
                                 {saveStatus === 'error' && (
-                                    <span style={{ color: '#EF4444' }}>Error saving</span>
+                                    <span style={{ color: '#EF4444' }}>{t('errorSaving')}</span>
                                 )}
                             </div>
 
+                            <button
+                                onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+                                className={styles.langToggle}
+                                style={{
+                                    background: 'none',
+                                    border: '1px solid var(--border)',
+                                    padding: '0.4rem 0.8rem',
+                                    borderRadius: '20px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    cursor: 'pointer',
+                                    marginRight: language === 'en' ? '1rem' : '0',
+                                    marginLeft: language === 'ar' ? '1rem' : '0'
+                                }}
+                            >
+                                {language === 'en' ? 'العربية' : 'English'}
+                            </button>
+
                             <Link href={`/${username || 'preview'}`} target="_blank" className="btn btn-secondary">
-                                Preview
+                                {t('preview')}
                             </Link>
                             {/* Auto-save enabled, no manual button needed */}
                             <button className="btn btn-secondary" onClick={handleLogout}>
-                                Logout
+                                {t('logout')}
                             </button>
                         </div>
                     </div>
@@ -807,52 +829,52 @@ export default function DashboardPage() {
                                 onClick={() => { handleTabChange('profile'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>👤</span>
-                                <span className={styles.tabLabel}>Profile</span>
+                                <span className={styles.tabLabel}>{t('profile')}</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'links' ? styles.tabActive : ''}`}
                                 onClick={() => { handleTabChange('links'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🔗</span>
-                                <span className={styles.tabLabel}>Links</span>
+                                <span className={styles.tabLabel}>{t('links')}</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'stories' ? styles.tabActive : ''}`}
                                 onClick={() => { handleTabChange('stories'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>📸</span>
-                                <span className={styles.tabLabel}>Stories</span>
+                                <span className={styles.tabLabel}>{t('stories')}</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'places' ? styles.tabActive : ''}`}
                                 onClick={() => { handleTabChange('places'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🌍</span>
-                                <span className={styles.tabLabel}>Places</span>
+                                <span className={styles.tabLabel}>{t('places')}</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'appearance' ? styles.tabActive : ''}`}
                                 onClick={() => { handleTabChange('appearance'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>🎨</span>
-                                <span className={styles.tabLabel}>Appearance</span>
+                                <span className={styles.tabLabel}>{t('appearance')}</span>
                             </button>
                             <button
                                 className={`${styles.tab} ${activeTab === 'settings' ? styles.tabActive : ''}`}
                                 onClick={() => { handleTabChange('settings'); setMobileMenuOpen(false); }}
                             >
                                 <span className={styles.tabIcon}>⚙️</span>
-                                <span className={styles.tabLabel}>Settings</span>
+                                <span className={styles.tabLabel}>{t('settings')}</span>
                             </button>
                         </div>
 
                         <div className={styles.tabContent}>
                             {activeTab === 'profile' && (
                                 <div className={styles.section}>
-                                    <h2>Profile Settings</h2>
+                                    <h2>{t('profileSettings')}</h2>
 
                                     <div className={styles.formGroup}>
-                                        <label>Profile Image</label>
+                                        <label>{t('uploadImage')}</label>
                                         <div className={styles.imageUpload}>
                                             <div
                                                 className={styles.imagePlaceholder}
@@ -877,13 +899,13 @@ export default function DashboardPage() {
                                                 onClick={() => document.getElementById('profile-upload')?.click()}
                                                 disabled={uploading}
                                             >
-                                                {uploading ? 'Uploading...' : 'Upload Image'}
+                                                {uploading ? t('uploading') : t('uploadImage')}
                                             </button>
                                         </div>
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Display Name</label>
+                                        <label>{t('displayName')}</label>
                                         <input
                                             type="text"
                                             value={name}
@@ -893,7 +915,7 @@ export default function DashboardPage() {
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Username</label>
+                                        <label>{t('username')}</label>
                                         <div className={styles.usernameField}>
                                             <span className={styles.urlPrefix}>travlink.com/</span>
                                             <input
@@ -906,11 +928,11 @@ export default function DashboardPage() {
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Bio</label>
+                                        <label>{t('bio')}</label>
                                         <textarea
                                             value={bio}
                                             onChange={(e) => setBio(e.target.value)}
-                                            placeholder="Tell people about yourself"
+                                            placeholder={t('tellPeople')}
                                             rows={4}
                                         />
                                     </div>
@@ -920,9 +942,9 @@ export default function DashboardPage() {
                             {activeTab === 'links' && (
                                 <div className={styles.section}>
                                     <div className={styles.sectionHeader}>
-                                        <h2>Your Links</h2>
+                                        <h2>{t('yourLinks')}</h2>
                                         <button className="btn btn-primary" onClick={addLink}>
-                                            + Add Link
+                                            + {t('addLink')}
                                         </button>
                                     </div>
 

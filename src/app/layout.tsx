@@ -55,6 +55,8 @@ export const metadata: Metadata = {
   description: "Share your travel recommendations, guide others to hidden gems, and protect your digital presence with a single, beautiful link.",
 };
 
+import { LanguageProvider } from "@/context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,7 +68,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${roboto.variable} ${poppins.variable} ${montserrat.variable} ${playfairDisplay.variable} ${lora.variable} ${cinzel.variable}`}
         suppressHydrationWarning
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

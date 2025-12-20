@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './Navbar.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Navbar() {
     const router = useRouter();
+    const { language, setLanguage, t } = useLanguage();
 
     const handleLoginClick = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -27,6 +29,10 @@ export default function Navbar() {
         }
     };
 
+    const toggleLanguage = () => {
+        setLanguage(language === 'en' ? 'ar' : 'en');
+    };
+
     return (
         <nav className={styles.navbar}>
             <div className={`container ${styles.container}`}>
@@ -41,15 +47,22 @@ export default function Navbar() {
                     />
                 </Link>
                 <div className={styles.actions}>
+                    <button
+                        onClick={toggleLanguage}
+                        className={styles.langToggle}
+                        aria-label="Toggle Language"
+                    >
+                        {language === 'en' ? 'العربية' : 'English'}
+                    </button>
                     <a
                         href="#"
                         onClick={handleLoginClick}
                         className={styles.loginLink}
                     >
-                        Log in
+                        {t('login')}
                     </a>
                     <Link href="/register" className="btn btn-primary">
-                        Get Started
+                        {t('getStarted')}
                     </Link>
                 </div>
             </div>

@@ -32,7 +32,7 @@ export default function DemoPage() {
         {
             id: '2',
             title: '📸 Instagram',
-            url: 'https://instagram.com/thatch',
+            url: 'https://instagram.com/',
             type: 'social',
             isVisible: true
         },
@@ -47,21 +47,21 @@ export default function DemoPage() {
         {
             id: '4',
             title: '💼 LinkedIn',
-            url: 'https://linkedin.com/company/thatch',
+            url: 'https://linkedin.com/',
             type: 'social',
             isVisible: true
         },
         {
             id: '5',
             title: '🐦 Twitter',
-            url: 'https://twitter.com/thatch',
+            url: 'https://twitter.com/',
             type: 'social',
             isVisible: true
         },
         {
             id: '6',
             title: 'Contact',
-            url: 'mailto:contact@thatch.com',
+            url: 'mailto:contact@example.com',
             type: 'link',
             isVisible: true
         }

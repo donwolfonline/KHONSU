@@ -54,7 +54,31 @@
 }
 
 .loginLink:hover {
-    color: #FF6B4A;
+    color: var(--primary);
+}
+
+.langToggle {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: all 0.2s;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] .langToggle {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+.langToggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--secondary);
 }
 
 /* Mobile Navbar Optimization */

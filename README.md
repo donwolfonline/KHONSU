@@ -1,4 +1,5 @@
-#  ![Uploading thatch-full-logo.webp…]()
+# ![thatch-full-logo](https://github.com/user-attachments/assets/e16903c8-328a-4ee5-8537-abc830b4d1eb)
+
 Thatch
 
 > **Curate Your Journey**

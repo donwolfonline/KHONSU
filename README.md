@@ -1,4 +1,5 @@
-# <img width="50" height="50" alt="Thatch" src="public/thatch-logo.png" /> Thatch
+#  ![Uploading thatch-full-logo.webp…]()
+Thatch
 
 > **Curate Your Journey**
 

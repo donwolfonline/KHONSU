@@ -1,13 +1,13 @@
 .container {
     min-height: 100vh;
-    background: #FAFAFA;
+    background: var(--background);
     padding-bottom: 4rem;
 }
 
 .header {
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--background);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid var(--border);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -36,6 +36,11 @@
     font-weight: 800;
     flex-shrink: 0;
     text-decoration: none;
+    color: var(--foreground);
+}
+
+[data-theme='dark'] .logo img {
+    filter: brightness(0) invert(1);
 }
 
 .headerActions {
@@ -89,9 +94,9 @@
 
 /* Creative Circle Tab Design */
 .tab {
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    color: #6B6B6B;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
     width: 60px;
     height: 60px;
     padding: 0;
@@ -109,6 +114,12 @@
     position: relative;
 }
 
+[data-theme='dark'] .tab {
+    background: var(--secondary);
+    border-color: var(--border);
+    color: var(--muted-foreground);
+}
+
 .tab:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -117,9 +128,9 @@
 }
 
 .tabActive {
-    background: #1A1A1A;
-    color: #FFFFFF !important;
-    border-color: #1A1A1A;
+    background: var(--foreground);
+    color: var(--background) !important;
+    border-color: var(--foreground);
     transform: scale(1.1) translateY(-5px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
@@ -140,8 +151,8 @@
     /* Icon-first design, tooltip on desktop? */
     position: absolute;
     bottom: -30px;
-    background: #1A1A1A;
-    color: white;
+    background: var(--foreground);
+    color: var(--background);
     font-size: 0.75rem;
     padding: 4px 8px;
     border-radius: 12px;
@@ -246,13 +257,20 @@
     width: 100%;
     padding: 0.875rem 1.125rem;
     border-radius: var(--radius);
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    color: #1A1A1A;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--foreground);
     font-size: 1rem;
     transition: all 0.2s;
     font-family: inherit;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .formGroup input,
+[data-theme='dark'] .formGroup textarea,
+[data-theme='dark'] .formGroup select {
+    background: var(--secondary);
+    border-color: var(--border);
 }
 
 .formGroup input:focus,
@@ -260,7 +278,13 @@
 .formGroup select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.2);
+}
+
+[data-theme='dark'] .formGroup input:focus,
+[data-theme='dark'] .formGroup textarea:focus,
+[data-theme='dark'] .formGroup select:focus {
+    box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.4);
 }
 
 .formGroup textarea {
@@ -301,8 +325,8 @@
 
 /* Collapsible Link Editor Styles */
 .linkCard {
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
+    background: var(--input);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
@@ -353,7 +377,7 @@
 .summaryTitle {
     font-weight: 600;
     font-size: 1rem;
-    color: #1A1A1A;
+    color: var(--foreground);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -374,9 +398,9 @@
 }
 
 .iconBtn {
-    background: #F5F5F5;
-    border: 1px solid #EAEAEA;
-    color: #666;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
     width: 36px;
     height: 36px;
     border-radius: 8px;
@@ -446,9 +470,9 @@
     text-align: center;
     padding: 1rem;
     border-radius: var(--radius);
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
     transition: all 0.25s;
-    background: #FFFFFF;
+    background: var(--input);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
@@ -460,7 +484,7 @@
 
 .themeActive {
     border-color: var(--primary);
-    background: #FFF9F7;
+    background: var(--secondary);
     box-shadow: 0 0 0 2px var(--primary);
 }
 
@@ -611,9 +635,10 @@
 }
 
 .previewPlaceCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     overflow: hidden;
+    color: inherit;
 }
 
 .previewPlaceImage {
@@ -677,9 +702,9 @@
 }
 
 .placeCard {
-    background: #FFFFFF;
+    background: var(--input);
     border-radius: var(--radius);
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
     overflow: hidden;
     transition: all 0.3s;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -709,7 +734,8 @@
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: #1A1A1A;
+    color: var(--foreground);
+    transition: color 0.3s;
 }
 
 .placeDescription {
@@ -1043,7 +1069,7 @@
         width: 50px;
         height: 50px;
         font-size: 1.25rem;
-        background: #FFFFFF;
+        background: var(--input);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 50%;
@@ -1389,12 +1415,12 @@
 .segmentedControl {
     display: flex;
     position: relative;
-    background: #F5F5F5;
+    background: var(--muted);
     border-radius: 50px;
     padding: 0.35rem;
     margin: 0 auto 1.5rem;
     width: 90%;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
 }
 
 .controlItem {
@@ -1404,7 +1430,7 @@
     background: none;
     border: none;
     padding: 0.6rem 0;
-    color: #666;
+    color: var(--muted-foreground);
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
@@ -1413,7 +1439,8 @@
 }
 
 .controlItem.active {
-    color: #000;
+    color: var(--foreground);
+    font-weight: 700;
 }
 
 .activeIndicator {
@@ -1422,7 +1449,7 @@
     left: 4px;
     bottom: 4px;
     width: calc(50% - 4px);
-    background: #ffffff;
+    background: var(--input);
     border-radius: 50px;
     z-index: 1;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1449,12 +1476,12 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #FFFFFF;
+    background: var(--input);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #666;
+    color: var(--muted-foreground);
     font-size: 1.1rem;
     text-decoration: none;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
 }
 
 .socialIconLink:hover {
@@ -1514,10 +1541,10 @@
 
 /* New "Cool" Font UI */
 .fontSection {
-    background: #FFFFFF;
+    background: var(--input);
     border-radius: 24px;
     padding: 2rem;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     margin-bottom: 2rem;
 }
@@ -1526,7 +1553,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #1A1A1A;
+    color: var(--foreground);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1632,19 +1659,19 @@
 }
 
 .previewLink {
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    color: #1A1A1A;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: inherit;
     padding: 1rem 1.5rem;
     border-radius: 12px;
     font-weight: 600;
-    font-size: 0.95rem;
+    cursor: default;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    font-size: 0.95rem;
     transition: all 0.2s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Button Shapes for Preview */
@@ -1706,9 +1733,9 @@
 
 .editPlaceBtn,
 .removePlaceBtn {
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    color: #666;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -1792,9 +1819,9 @@
 
 .buttonShapeBtn {
     padding: 0.875rem 1.5rem;
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    color: #666;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1828,16 +1855,16 @@
 .appearancePreviewBox {
     margin-top: 1.5rem;
     padding: 2rem;
-    background: #FAFAFA;
+    background: var(--background);
     border-radius: 16px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--border);
     text-align: center;
 }
 
 .appearancePreviewTitle {
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--muted-foreground);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;

@@ -1,43 +1,29 @@
 :root {
-  /* Thatch Light Theme - Orange/Coral Accent */
+  /* Default Light Theme */
   --background: #FFFFFF;
-  /* Pure white */
   --foreground: #1A1A1A;
-  /* Dark text */
 
   --primary: #FF6B4A;
-  /* Coral/Orange */
   --primary-hover: #F96854;
-  /* Darker coral */
   --primary-foreground: #FFFFFF;
-  /* White text on orange */
 
   --secondary: #FFF9F7;
-  /* Light peach/cream background */
   --secondary-hover: #FFF5F2;
-  /* Lighter peach on hover */
   --secondary-foreground: #1A1A1A;
-  /* Dark text */
 
   --accent: #FFE8E3;
-  /* Light coral/peach */
   --accent-foreground: #1A1A1A;
 
   --muted: #F0F0F0;
-  /* Light gray */
   --muted-foreground: #6B6B6B;
-  /* Medium gray text */
 
   --border: #E5E5E5;
-  /* Light gray border */
   --input: #FFFFFF;
   --ring: #FF6B4A;
-  /* Orange focus ring */
 
   --radius: 0.75rem;
-  /* Rounded corners */
 
-  /* Thatch Gradients */
+  /* Gradients */
   --gradient-primary: linear-gradient(135deg, #FF6B4A 0%, #F96854 100%);
   --gradient-light: linear-gradient(to bottom, #FFFFFF, #FFF9F7);
   --gradient-peach: linear-gradient(135deg, #FFF9F7 0%, #FFE8E3 100%);
@@ -50,6 +36,34 @@
   --font-montserrat: var(--font-montserrat);
   --font-playfair: var(--font-playfair);
   --font-lora: var(--font-lora);
+}
+
+[data-theme='dark'] {
+  --background: #121212;
+  --foreground: #FFFFFF;
+
+  --primary: #FF6B4A;
+  --primary-hover: #F96854;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #1E1E1E;
+  --secondary-hover: #2A2A2A;
+  --secondary-foreground: #FFFFFF;
+
+  --accent: #2C2C2C;
+  --accent-foreground: #FFFFFF;
+
+  --muted: #2A2A2A;
+  --muted-foreground: #A0A0A0;
+
+  --border: #333333;
+  --input: #1E1E1E;
+  --ring: #FF6B4A;
+
+  /* Gradients for Dark Mode */
+  --gradient-light: linear-gradient(to bottom, #121212, #1E1E1E);
+  --gradient-peach: linear-gradient(135deg, #1E1E1E 0%, #2C2C2C 100%);
+  --gradient-hero: linear-gradient(135deg, #121212 0%, #1E1E1E 100%);
 }
 
 * {

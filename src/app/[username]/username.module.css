@@ -219,7 +219,6 @@
 }
 
 .controlItem.active {
-    color: var(--foreground);
     color: #000;
 }
 

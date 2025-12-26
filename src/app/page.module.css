@@ -330,6 +330,18 @@
   transition: all 0.3s ease;
 }
 
+.featureCard h3 {
+  color: #1A1A1A;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.featureCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
 .featureCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);

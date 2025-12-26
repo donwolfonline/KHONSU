@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 import styles from './StoryViewer.module.css';
 import { Story } from '@/types';
 
@@ -25,12 +26,12 @@ export default function StoryViewer({ stories, initialIndex, onClose }: StoryVie
         }
     }, [currentIndex, stories.length, onClose]);
 
-    const goToPrevious = () => {
+    const goToPrevious = useCallback(() => {
         if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
             setProgress(0);
         }
-    };
+    }, [currentIndex]);
 
     // Auto-advance timer (5 seconds per story)
     useEffect(() => {
@@ -59,7 +60,7 @@ export default function StoryViewer({ stories, initialIndex, onClose }: StoryVie
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [currentIndex, onClose, goToNext]);
+    }, [currentIndex, onClose, goToNext, goToPrevious]);
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -106,10 +107,13 @@ export default function StoryViewer({ stories, initialIndex, onClose }: StoryVie
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
-                    <img
+                    <Image
                         src={stories[currentIndex].imageUrl}
                         alt="Story"
+                        fill
                         className={styles.storyImage}
+                        priority
+                        sizes="(max-width: 768px) 100vw, 500px"
                     />
                 </div>
 

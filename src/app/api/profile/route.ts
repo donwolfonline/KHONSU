@@ -69,6 +69,9 @@ export async function GET() {
 
 export async function PUT(req: Request) {
     try {
+        console.log('API Route CWD:', process.cwd());
+        // console.log('API Route DATABASE_URL:', process.env.DATABASE_URL); // Careful with secrets
+
         const userId = await getUserFromToken();
 
         if (!userId) {
@@ -144,10 +147,15 @@ export async function PUT(req: Request) {
         console.log('User updated:', user);
 
         return NextResponse.json({ user, message: 'Profile updated successfully' });
-    } catch (error) {
-        console.error('Profile update error:', error);
+    } catch (error: any) {
+        console.error('Profile update CRITICAL error:', error);
+        // Log the full error object structure
+        console.dir(error, { depth: null });
         return NextResponse.json(
-            { error: 'Internal server error' },
+            {
+                error: error?.message || 'Unknown error occurred',
+                details: JSON.stringify(error, Object.getOwnPropertyNames(error))
+            },
             { status: 500 }
         );
     }

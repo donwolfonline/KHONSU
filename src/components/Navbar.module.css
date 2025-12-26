@@ -59,13 +59,13 @@
 
 .langToggle {
     background: none;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    color: var(--foreground);
+    color: #1A1A1A;
     transition: all 0.2s;
     margin-right: 1rem;
 }
@@ -76,9 +76,9 @@
 }
 
 .langToggle:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    background-color: var(--secondary);
+    border-color: #FF6B4A;
+    color: #FF6B4A;
+    background-color: rgba(255, 107, 74, 0.05);
 }
 
 /* Mobile Navbar Optimization */

@@ -111,9 +111,11 @@
 }
 
 .tabActive {
-    background: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    color: #1A1A1A;
+    font-weight: 700;
 }
 
 .bio {

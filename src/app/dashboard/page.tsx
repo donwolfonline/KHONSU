@@ -8,6 +8,7 @@ import styles from './dashboard.module.css';
 import StoryViewer from '@/components/StoryViewer';
 
 import { useLanguage } from '@/context/LanguageContext';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function DashboardPage() {
     const { t, language, setLanguage } = useLanguage();
@@ -780,6 +781,7 @@ export default function DashboardPage() {
                                 )}
                             </div>
 
+                            <ThemeToggle />
                             <button
                                 onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
                                 className={styles.langToggle}
@@ -791,16 +793,32 @@ export default function DashboardPage() {
                                     fontSize: '0.85rem',
                                     fontWeight: 500,
                                     cursor: 'pointer',
+                                    color: 'var(--foreground)',
                                     marginRight: language === 'en' ? '1rem' : '0',
                                     marginLeft: language === 'ar' ? '1rem' : '0'
                                 }}
                             >
                                 {language === 'en' ? 'العربية' : 'English'}
                             </button>
-
-                            <Link href={`/${username || 'preview'}`} target="_blank" className="btn btn-secondary">
+                            <button
+                                onClick={async () => {
+                                    await saveProfile();
+                                    window.open(`/${username || 'preview'}`, '_blank');
+                                }}
+                                className="btn btn-secondary"
+                                style={{
+                                    textDecoration: 'none',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '0.5rem 1rem',
+                                    fontWeight: 600,
+                                    borderRadius: '12px',
+                                    cursor: 'pointer'
+                                }}
+                            >
                                 {t('preview')}
-                            </Link>
+                            </button>
                             {/* Auto-save enabled, no manual button needed */}
                             <button className="btn btn-secondary" onClick={handleLogout}>
                                 {t('logout')}

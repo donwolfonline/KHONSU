@@ -1037,23 +1037,23 @@ export default function DashboardPage() {
                                 <div className={styles.section}>
                                     <div className={styles.sectionHeader}>
                                         <div>
-                                            <h2>Stories</h2>
-                                            <p className={styles.helperText}>Share moments that disappear after 24 hours</p>
+                                            <h2>{t('stories')}</h2>
+                                            <p className={styles.helperText}>{t('shareFavoritePlaces')}</p>
                                         </div>
                                         <button
                                             className="btn btn-primary"
                                             onClick={addStory}
                                             disabled={uploading}
                                         >
-                                            {uploading ? 'Uploading...' : '+ Add Story'}
+                                            {uploading ? t('uploading') : `+ ${t('addStory')}`}
                                         </button>
                                     </div>
 
                                     {stories.length === 0 ? (
                                         <div className={styles.emptyStoriesState}>
                                             <div className={styles.emptyIcon}>📸</div>
-                                            <h3>No Stories Yet</h3>
-                                            <p>Add your first story to share with your audience</p>
+                                            <h3>{t('noStoriesYet')}</h3>
+                                            <p>{t('addFirstStory')}</p>
                                         </div>
                                     ) : (
                                         <div className={styles.storiesGrid}>
@@ -1084,15 +1084,15 @@ export default function DashboardPage() {
                                 <div className={styles.section}>
                                     <div className={styles.sectionHeader}>
                                         <div>
-                                            <h2>Favorite Places</h2>
-                                            <p className={styles.helperText}>Share your favorite travel destinations</p>
+                                            <h2>{t('favoritePlaces')}</h2>
+                                            <p className={styles.helperText}>{t('shareFavoritePlaces')}</p>
                                         </div>
                                         <button
                                             className="btn btn-primary"
                                             onClick={addPlace}
                                             disabled={uploading}
                                         >
-                                            {uploading ? 'Uploading...' : '+ Add Place'}
+                                            {uploading ? t('uploading') : `+ ${t('addPlace')}`}
                                         </button>
                                     </div>
 
@@ -1102,7 +1102,7 @@ export default function DashboardPage() {
                                                 <img src={newPlaceData.imageUrl} alt="Preview" />
                                             </div>
                                             <div className={styles.formGroup}>
-                                                <label>Title *</label>
+                                                <label>{t('title')} *</label>
                                                 <input
                                                     type="text"
                                                     value={newPlaceData.title}
@@ -1111,7 +1111,7 @@ export default function DashboardPage() {
                                                 />
                                             </div>
                                             <div className={styles.formGroup}>
-                                                <label>Rating</label>
+                                                <label>{t('rating')}</label>
                                                 <div className={styles.starRatingInput}>
                                                     {[1, 2, 3, 4, 5].map((star) => (
                                                         <button
@@ -1125,16 +1125,16 @@ export default function DashboardPage() {
                                                 </div>
                                             </div>
                                             <div className={styles.formGroup}>
-                                                <label>Description</label>
+                                                <label>{t('description')}</label>
                                                 <textarea
                                                     value={newPlaceData.description}
                                                     onChange={(e) => setNewPlaceData({ ...newPlaceData, description: e.target.value })}
-                                                    placeholder="Share what makes this place special..."
+                                                    placeholder={t('shareTitle')}
                                                     rows={3}
                                                 />
                                             </div>
                                             <div className={styles.formGroup}>
-                                                <label>Location Link *</label>
+                                                <label>{t('locationLink')} *</label>
                                                 <input
                                                     type="url"
                                                     value={newPlaceData.locationLink}
@@ -1144,10 +1144,10 @@ export default function DashboardPage() {
                                             </div>
                                             <div className={styles.formActions}>
                                                 <button className="btn btn-secondary" onClick={cancelNewPlace}>
-                                                    Cancel
+                                                    {t('cancel')}
                                                 </button>
                                                 <button className="btn btn-primary" onClick={saveNewPlace}>
-                                                    Save Place
+                                                    {t('savePlace')}
                                                 </button>
                                             </div>
                                         </div>
@@ -1156,8 +1156,8 @@ export default function DashboardPage() {
                                     {places.length === 0 && !newPlaceData ? (
                                         <div className={styles.emptyStoriesState}>
                                             <div className={styles.emptyIcon}>🌍</div>
-                                            <h3>No Places Yet</h3>
-                                            <p>Add your first favorite place to share with your audience</p>
+                                            <h3>{t('noPlacesYet')}</h3>
+                                            <p>{t('addFirstPlace')}</p>
                                         </div>
                                     ) : (
                                         <div className={styles.placesGrid}>
@@ -1203,7 +1203,7 @@ export default function DashboardPage() {
                                                             rel="noopener noreferrer"
                                                             className={styles.placeLink}
                                                         >
-                                                            📍 View Location
+                                                            📍 {t('viewLocation')}
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1219,11 +1219,11 @@ export default function DashboardPage() {
                                     <div className={styles.appearanceSection}>
                                         <div className={styles.sectionHeader}>
                                             <div>
-                                                <h2>🎨 Choose Your Theme</h2>
-                                                <p className={styles.helperText}>Pick a "plate" style for your background</p>
+                                                <h2>🎨 {t('chooseTheme')}</h2>
+                                                <p className={styles.helperText}>{t('pickStyle')}</p>
                                             </div>
                                             <div className={styles.themeQuickStats}>
-                                                <span className={styles.quickStatBadge}>{themes.length} Styles</span>
+                                                <span className={styles.quickStatBadge}>{themes.length} {t('stylesCount')}</span>
                                             </div>
                                         </div>
 
@@ -1256,7 +1256,7 @@ export default function DashboardPage() {
                                                     aria-label="Custom Background"
                                                 >
                                                     <span className={styles.plateCheck}>✓</span>
-                                                    <span className={styles.plateLabel}>Custom</span>
+                                                    <span className={styles.plateLabel}>{t('custom')}</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -1272,16 +1272,15 @@ export default function DashboardPage() {
                                         {customBackground && (
                                             <div className={styles.successMessage}>
                                                 <span>✓</span>
-                                                <p>Custom background uploaded!</p>
+                                                <p>{t('customBackgroundUploaded')}</p>
                                             </div>
                                         )}
                                     </div>
 
                                     {/* Font Customization - Cool UI */}
                                     <div className={styles.fontSection} style={{ marginTop: '2rem' }}>
-
                                         {/* Font Family - Pills */}
-                                        <h3 className={styles.sectionTitle}>🔤 Font Style</h3>
+                                        <h3 className={styles.sectionTitle}>🔤 {t('fontStyle')}</h3>
                                         <div className={styles.fontGroup}>
                                             {['Inter', 'Roboto', 'Poppins', 'Montserrat', 'Playfair Display', 'Lora'].map(font => (
                                                 <button
@@ -1296,7 +1295,7 @@ export default function DashboardPage() {
                                         </div>
 
                                         {/* Font Color - Swatches */}
-                                        <h3 className={styles.sectionTitle} style={{ marginTop: '2rem' }}>🎨 Text Color</h3>
+                                        <h3 className={styles.sectionTitle} style={{ marginTop: '2rem' }}>🎨 {t('textColor')}</h3>
                                         <div className={styles.swatchGrid}>
                                             {['#ffffff', '#000000', '#f8fafc', '#9ca3af', '#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899'].map(color => (
                                                 <button
@@ -1329,7 +1328,7 @@ export default function DashboardPage() {
 
                                         {/* Live Preview Card */}
                                         <div className={styles.fontPreviewCard}>
-                                            <h4 className={styles.previewTitle}>Preview</h4>
+                                            <h4 className={styles.previewTitle}>{t('preview')}</h4>
                                             <div
                                                 className={styles.fontPreviewText}
                                                 style={{
@@ -1337,8 +1336,8 @@ export default function DashboardPage() {
                                                     color: fontColor
                                                 }}
                                             >
-                                                <p className={styles.previewName}>Your Name</p>
-                                                <p className={styles.previewBioText}>This is how your bio text will look with the selected font and color.</p>
+                                                <p className={styles.previewName}>{t('yourName')}</p>
+                                                <p className={styles.previewBioText}>{t('previewBioText')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1346,16 +1345,16 @@ export default function DashboardPage() {
                                     {/* Button Shapes */}
                                     <div className={styles.appearanceSection} style={{ marginTop: '2rem' }}>
                                         <div>
-                                            <h2>🔘 Button Shapes</h2>
-                                            <p className={styles.helperText}>Choose how your link buttons look</p>
+                                            <h2>🔘 {t('buttonShapes')}</h2>
+                                            <p className={styles.helperText}>{t('chooseButtonLook')}</p>
                                         </div>
 
                                         <div className={styles.buttonShapeGrid}>
                                             {[
-                                                { id: 'rounded', name: 'Rounded', radius: '16px' },
-                                                { id: 'pill', name: 'Pill', radius: '50px' },
-                                                { id: 'sharp', name: 'Sharp', radius: '0px' },
-                                                { id: 'soft', name: 'Soft', radius: '8px' },
+                                                { id: 'rounded', name: t('rounded'), radius: '16px' },
+                                                { id: 'pill', name: t('pill'), radius: '50px' },
+                                                { id: 'sharp', name: t('sharp'), radius: '0px' },
+                                                { id: 'soft', name: t('soft'), radius: '8px' },
                                             ].map((shape) => (
                                                 <button
                                                     key={shape.id}
@@ -1370,12 +1369,12 @@ export default function DashboardPage() {
 
                                         {/* Preview */}
                                         <div className={styles.appearancePreviewBox}>
-                                            <h4 className={styles.appearancePreviewTitle}>Preview</h4>
+                                            <h4 className={styles.appearancePreviewTitle}>{t('preview')}</h4>
                                             <div className={styles.sampleButtonContainer}>
                                                 <div className={styles.sampleButton} style={{
                                                     borderRadius: buttonShape === 'rounded' ? '16px' : buttonShape === 'pill' ? '50px' : buttonShape === 'sharp' ? '0px' : '8px'
                                                 }}>
-                                                    Sample Link Button
+                                                    {t('sampleLinkButton')}
                                                 </div>
                                             </div>
                                         </div>
@@ -1387,14 +1386,14 @@ export default function DashboardPage() {
 
                         {activeTab === 'settings' && (
                             <div className={styles.section}>
-                                <h2>Account Settings</h2>
+                                <h2>{t('accountSettings')}</h2>
 
 
                                 <div className={styles.formGroup} style={{ marginTop: '2rem' }}>
 
                                     {/* Email Change Section */}
                                     <div style={{ marginBottom: '3rem' }}>
-                                        <h3 style={{ marginBottom: '1rem' }}>Account Information</h3>
+                                        <h3 style={{ marginBottom: '1rem' }}>{t('accountInfo')}</h3>
                                         {emailMessage && (
                                             <div style={{
                                                 padding: '0.75rem',
@@ -1409,13 +1408,13 @@ export default function DashboardPage() {
                                             </div>
                                         )}
                                         <div className={styles.formGroup}>
-                                            <label>Email Address</label>
+                                            <label>{t('emailAddress')}</label>
                                             <div style={{ display: 'flex', gap: '1rem' }}>
                                                 <input
                                                     type="email"
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    placeholder="Enter your email"
+                                                    placeholder={t('enterEmail')}
                                                     disabled={changingEmail}
                                                 />
                                                 <button
@@ -1424,13 +1423,13 @@ export default function DashboardPage() {
                                                     disabled={changingEmail}
                                                     style={{ whiteSpace: 'nowrap' }}
                                                 >
-                                                    {changingEmail ? 'Updating...' : 'Update Email'}
+                                                    {changingEmail ? t('updating') : t('updateEmail')}
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <h3 style={{ marginBottom: '1rem' }}>Change Password</h3>
+                                    <h3 style={{ marginBottom: '1rem' }}>{t('changePassword')}</h3>
 
                                     {passwordMessage && (
                                         <div style={{
@@ -1447,34 +1446,34 @@ export default function DashboardPage() {
                                     )}
 
                                     <div className={styles.formGroup}>
-                                        <label>Current Password</label>
+                                        <label>{t('currentPassword')}</label>
                                         <input
                                             type="password"
                                             value={currentPassword}
                                             onChange={(e) => setCurrentPassword(e.target.value)}
-                                            placeholder="Enter current password"
+                                            placeholder={t('enterCurrentPassword')}
                                             disabled={changingPassword}
                                         />
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>New Password</label>
+                                        <label>{t('newPassword')}</label>
                                         <input
                                             type="password"
                                             value={newPassword}
                                             onChange={(e) => setNewPassword(e.target.value)}
-                                            placeholder="Enter new password (min. 6 characters)"
+                                            placeholder={t('enterNewPassword')}
                                             disabled={changingPassword}
                                         />
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Confirm New Password</label>
+                                        <label>{t('confirmPassword')}</label>
                                         <input
                                             type="password"
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
-                                            placeholder="Confirm new password"
+                                            placeholder={t('confirmNewPassword')}
                                             disabled={changingPassword}
                                         />
                                     </div>
@@ -1486,7 +1485,7 @@ export default function DashboardPage() {
                                             disabled={changingPassword}
                                             style={{ marginTop: '1rem' }}
                                         >
-                                            {changingPassword ? 'Changing Password...' : 'Change Password'}
+                                            {changingPassword ? t('changingPassword') : t('changePassword')}
                                         </button>
                                     </div>
                                 </div>
@@ -1498,7 +1497,7 @@ export default function DashboardPage() {
                     {/* Live Preview */}
                     <div className={styles.previewPanel}>
                         <div className={styles.previewHeader}>
-                            <h3>Live Preview</h3>
+                            <h3>{t('livePreview')}</h3>
                         </div>
                         <div className={styles.previewContent}>
                             <div className={styles.phoneFrame}>
@@ -1544,12 +1543,12 @@ export default function DashboardPage() {
 
                                         {/* Mock Share Button for Preview */}
                                         <div className={styles.floatingShareBtn}>
-                                            <span>📤</span> Share
+                                            <span>📤</span> {t('share')}
                                         </div>
                                         <h3
                                             className={styles.previewName}
                                         >
-                                            {name || 'Your Name'}
+                                            {name || t('yourName')}
                                         </h3>
                                         <p
                                             className={styles.previewBio}
@@ -1584,13 +1583,13 @@ export default function DashboardPage() {
                                                     className={`${styles.controlItem} ${previewTab === 'profile' ? styles.active : ''}`}
                                                     onClick={() => setPreviewTab('profile')}
                                                 >
-                                                    Profile
+                                                    {t('profile')}
                                                 </button>
                                                 <button
                                                     className={`${styles.controlItem} ${previewTab === 'places' ? styles.active : ''}`}
                                                     onClick={() => setPreviewTab('places')}
                                                 >
-                                                    My Places
+                                                    {t('myPlaces')}
                                                 </button>
                                             </div>
                                         )}

@@ -58,9 +58,7 @@
     align-items: start;
 }
 
-[dir="rtl"] .grid {
-    grid-template-columns: 380px minmax(0, 1fr);
-}
+
 
 .editorPanel {
     min-height: 400px;

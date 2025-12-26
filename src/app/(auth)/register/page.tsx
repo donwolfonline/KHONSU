@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import useRouter
-import styles from '../login/auth.module.css'; // Reusing styles
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
+import styles from '../login/auth.module.css';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -13,6 +14,7 @@ export default function RegisterPage() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const { language, setLanguage, t } = useLanguage();
 
     const [success, setSuccess] = useState(false);
 
@@ -49,22 +51,39 @@ export default function RegisterPage() {
         <div className={styles.container}>
             <div className={`glass-card ${styles.card}`}>
                 <div className={styles.header}>
-                    <Link href="/" className={styles.logo}>
-                        <Image
-                            src="/thatch-full-logo.png"
-                            alt="Thatch"
-                            width={140}
-                            height={40}
-                            priority
-                        />
-                    </Link>
-                    <h1 className={styles.title}>Create an account</h1>
-                    <p className={styles.subtitle}>Start building your bio page today</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                        <Link href="/" className={styles.logo}>
+                            <Image
+                                src="/thatch-full-logo.png"
+                                alt="Thatch"
+                                width={140}
+                                height={40}
+                                priority
+                            />
+                        </Link>
+                        <button
+                            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+                            style={{
+                                background: 'none',
+                                border: '1px solid rgba(0, 0, 0, 0.1)',
+                                padding: '0.4rem 0.8rem',
+                                borderRadius: '20px',
+                                fontSize: '0.85rem',
+                                fontWeight: 500,
+                                cursor: 'pointer',
+                                color: '#1A1A1A'
+                            }}
+                        >
+                            {language === 'en' ? 'العربية' : 'English'}
+                        </button>
+                    </div>
+                    <h1 className={styles.title}>{t('createAccount')}</h1>
+                    <p className={styles.subtitle}>{t('startBuilding')}</p>
                 </div>
 
                 {success && (
                     <div style={{ color: '#22c55e', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>
-                        Account created! Redirecting to login...
+                        {t('accountCreatedRedirect')}
                     </div>
                 )}
 
@@ -76,7 +95,7 @@ export default function RegisterPage() {
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">{t('username')}</label>
                         <input
                             type="text"
                             id="username"
@@ -88,7 +107,7 @@ export default function RegisterPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">{t('email')}</label>
                         <input
                             type="email"
                             id="email"
@@ -100,7 +119,7 @@ export default function RegisterPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">{t('password')}</label>
                         <input
                             type="password"
                             id="password"
@@ -112,15 +131,15 @@ export default function RegisterPage() {
                     </div>
 
                     <button type="submit" className="btn btn-primary btn-full" disabled={isLoading}>
-                        {isLoading ? 'Creating Account...' : 'Sign Up'}
+                        {isLoading ? t('creatingAccount') : t('signUp')}
                     </button>
                 </form>
 
                 <div className={styles.footer}>
                     <p>
-                        Already have an account?{' '}
+                        {t('alreadyHaveAccount')}{' '}
                         <Link href="/login" className={styles.link}>
-                            Sign in
+                            {t('signIn')}
                         </Link>
                     </p>
                 </div>

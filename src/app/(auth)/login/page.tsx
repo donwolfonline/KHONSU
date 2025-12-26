@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './auth.module.css';
 
 export default function LoginPage() {
@@ -15,6 +16,7 @@ export default function LoginPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const registered = searchParams.get('registered');
+    const { language, setLanguage, t } = useLanguage();
 
     // Check if user is already authenticated
     useEffect(() => {
@@ -68,7 +70,7 @@ export default function LoginPage() {
             <div className={styles.container}>
                 <div className={`glass-card ${styles.card}`}>
                     <div style={{ textAlign: 'center', padding: '2rem' }}>
-                        <p>Checking authentication...</p>
+                        <p>{t('checkingAuth')}</p>
                     </div>
                 </div>
             </div>
@@ -79,22 +81,39 @@ export default function LoginPage() {
         <div className={styles.container}>
             <div className={`glass-card ${styles.card}`}>
                 <div className={styles.header}>
-                    <Link href="/" className={styles.logo}>
-                        <Image
-                            src="/thatch-full-logo.png"
-                            alt="Thatch"
-                            width={140}
-                            height={40}
-                            priority
-                        />
-                    </Link>
-                    <h1 className={styles.title}>Welcome back</h1>
-                    <p className={styles.subtitle}>Enter your details to access your account</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                        <Link href="/" className={styles.logo}>
+                            <Image
+                                src="/thatch-full-logo.png"
+                                alt="Thatch"
+                                width={140}
+                                height={40}
+                                priority
+                            />
+                        </Link>
+                        <button
+                            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+                            style={{
+                                background: 'none',
+                                border: '1px solid rgba(0, 0, 0, 0.1)',
+                                padding: '0.4rem 0.8rem',
+                                borderRadius: '20px',
+                                fontSize: '0.85rem',
+                                fontWeight: 500,
+                                cursor: 'pointer',
+                                color: '#1A1A1A'
+                            }}
+                        >
+                            {language === 'en' ? 'العربية' : 'English'}
+                        </button>
+                    </div>
+                    <h1 className={styles.title}>{t('welcomeBack')}</h1>
+                    <p className={styles.subtitle}>{t('enterDetails')}</p>
                 </div>
 
                 {registered && (
                     <div style={{ color: '#22c55e', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>
-                        Account created successfully! Please sign in.
+                        {t('accountCreated')}
                     </div>
                 )}
 
@@ -106,7 +125,7 @@ export default function LoginPage() {
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">{t('email')}</label>
                         <input
                             type="email"
                             id="email"
@@ -118,7 +137,7 @@ export default function LoginPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">{t('password')}</label>
                         <input
                             type="password"
                             id="password"
@@ -130,15 +149,15 @@ export default function LoginPage() {
                     </div>
 
                     <button type="submit" className="btn btn-primary btn-full" disabled={isLoading}>
-                        {isLoading ? 'Signing In...' : 'Sign In'}
+                        {isLoading ? t('signingIn') : t('signIn')}
                     </button>
                 </form>
 
                 <div className={styles.footer}>
                     <p>
-                        Don't have an account?{' '}
+                        {t('dontHaveAccount')}{' '}
                         <Link href="/register" className={styles.link}>
-                            Sign up
+                            {t('signUp')}
                         </Link>
                     </p>
                 </div>

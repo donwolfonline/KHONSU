@@ -9,7 +9,7 @@ export default function ContactPage() {
                 <div className="container" style={{ maxWidth: '600px' }}>
                     <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1.5rem', color: '#1A1A1A' }}>Contact Us</h1>
                     <p style={{ fontSize: '1.1rem', color: '#555', marginBottom: '2rem' }}>
-                        Have questions or feedback? We're here to help.
+                        Have questions or feedback? We&apos;re here to help.
                     </p>
 
                     <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

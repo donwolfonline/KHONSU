@@ -2,12 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import styles from './StoryViewer.module.css';
-
-interface Story {
-    id: string;
-    imageUrl: string;
-    createdAt: string;
-}
+import { Story } from '@/types';
 
 interface StoryViewerProps {
     stories: Story[];

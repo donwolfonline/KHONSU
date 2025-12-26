@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './preview.module.css';
 import StoryViewer from '@/components/StoryViewer';
+import { Profile, LinkItem, Story, Place } from '@/types';
 
 export default function PreviewPage() {
-    const [profile, setProfile] = useState<any>(null);
-    const [links, setLinks] = useState<any[]>([]);
-    const [stories, setStories] = useState<any[]>([]);
-    const [places, setPlaces] = useState<any[]>([]);
+    const [profile, setProfile] = useState<Profile | null>(null);
+    const [links, setLinks] = useState<LinkItem[]>([]);
+    const [stories, setStories] = useState<Story[]>([]);
+    const [places, setPlaces] = useState<Place[]>([]);
     const [loading, setLoading] = useState(true);
     const [showStoryViewer, setShowStoryViewer] = useState(false);
     const [selectedStoryIndex, setSelectedStoryIndex] = useState(0);
@@ -24,48 +25,48 @@ export default function PreviewPage() {
     };
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [profileRes, linksRes, storiesRes, placesRes] = await Promise.all([
+                    fetch('/api/profile'),
+                    fetch('/api/links'),
+                    fetch('/api/stories'),
+                    fetch('/api/places'),
+                ]);
+
+                if (profileRes.status === 401 || linksRes.status === 401) {
+                    router.push('/login');
+                    return;
+                }
+
+                if (profileRes.ok) {
+                    const profileData = await profileRes.json();
+                    setProfile(profileData.user);
+                }
+
+                if (linksRes.ok) {
+                    const linksData = await linksRes.json();
+                    setLinks(linksData.links.filter((l: LinkItem) => l.title && l.url && l.isVisible !== false));
+                }
+
+                if (storiesRes.ok) {
+                    const storiesData = await storiesRes.json();
+                    setStories(storiesData.stories);
+                }
+
+                if (placesRes.ok) {
+                    const placesData = await placesRes.json();
+                    setPlaces(placesData.places);
+                }
+            } catch (error) {
+                console.error('Failed to fetch preview data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const [profileRes, linksRes, storiesRes, placesRes] = await Promise.all([
-                fetch('/api/profile'),
-                fetch('/api/links'),
-                fetch('/api/stories'),
-                fetch('/api/places'),
-            ]);
-
-            if (profileRes.status === 401 || linksRes.status === 401) {
-                router.push('/login');
-                return;
-            }
-
-            if (profileRes.ok) {
-                const profileData = await profileRes.json();
-                setProfile(profileData.user);
-            }
-
-            if (linksRes.ok) {
-                const linksData = await linksRes.json();
-                setLinks(linksData.links.filter((l: any) => l.title && l.url && l.isVisible !== false));
-            }
-
-            if (storiesRes.ok) {
-                const storiesData = await storiesRes.json();
-                setStories(storiesData.stories);
-            }
-
-            if (placesRes.ok) {
-                const placesData = await placesRes.json();
-                setPlaces(placesData.places);
-            }
-        } catch (error) {
-            console.error('Failed to fetch preview data:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    }, [router]);
 
     if (loading) {
         return (

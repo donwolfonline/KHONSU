@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function DemoPage() {
     const [showStoryViewer, setShowStoryViewer] = useState(false);
-    const [selectedStoryIndex, setSelectedStoryIndex] = useState(0);
+    const [selectedStoryIndex] = useState(0);
     const [activeTab, setActiveTab] = useState('profile');
     const [copied, setCopied] = useState(false);
     const [expandedVideoId, setExpandedVideoId] = useState<string | null>(null);
